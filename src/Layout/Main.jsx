@@ -1,10 +1,13 @@
 import { Outlet } from "react-router-dom";
+import NavBar from "../Pages/Shared/NavBar/NavBar";
+import { Box } from "@chakra-ui/react";
 
 const Main = () => {
     return (
-        <div>
+        <Box >
+            <NavBar />
             <Outlet />
-        </div>
+        </Box>
     );
 };
 
