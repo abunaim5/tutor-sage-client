@@ -1,7 +1,9 @@
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, ButtonGroup, Flex, Heading, Spacer } from "@chakra-ui/react";
+import { Avatar, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, ButtonGroup, Flex, Heading, Menu, MenuButton, MenuGroup, MenuItem, MenuList, Portal, Spacer, useDisclosure } from "@chakra-ui/react";
 import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
     return (
         <Box p={7} w='full'>
             <Flex maxW='8xl' mx='auto' alignItems='center' gap='2' px={2}>
@@ -17,8 +19,20 @@ const NavBar = () => {
                         <BreadcrumbItem _hover={{ color: '#FF1949' }} mx={5}>
                             <BreadcrumbLink as={NavLink} to='/f' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Classes</BreadcrumbLink>
                         </BreadcrumbItem>
+                        {/* <BreadcrumbItem _hover={{ color: '#FF1949' }}>
+                            <BreadcrumbLink as={NavLink} to='/p' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Teach on TutorSage</BreadcrumbLink>
+                        </BreadcrumbItem> */}
                         <BreadcrumbItem _hover={{ color: '#FF1949' }}>
-                            <BreadcrumbLink as={NavLink} to='/p' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Pages</BreadcrumbLink>
+                            <Menu isOpen={isOpen} isLazy placement="auto">
+                                <MenuButton onMouseEnter={onOpen} transition='all 0.001s'>Pages</MenuButton>
+                                <Portal>
+                                    <MenuList onMouseLeave={onClose} mt={8} borderRadius='none'>
+                                        <MenuItem as={NavLink} to='/t'>Teach on TutorSage</MenuItem>
+                                        <MenuItem>Events</MenuItem>
+                                    </MenuList>
+                                </Portal>
+                            </Menu>
+                            {/* <BreadcrumbLink as={NavLink} to='/p' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Teach on TutorSage</BreadcrumbLink> */}
                         </BreadcrumbItem>
                         <BreadcrumbItem _hover={{ color: '#FF1949' }} mx={5}>
                             <BreadcrumbLink as={NavLink} to='/a' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>About Us</BreadcrumbLink>
@@ -29,10 +43,24 @@ const NavBar = () => {
                     </Breadcrumb>
                 </Box>
                 <Spacer />
-                <ButtonGroup gap='2'>
-                    <Button colorScheme='primary' variant='outline' borderRadius='none'>Log In</Button>
-                    <Button colorScheme='primary' borderRadius='none'>Sign Up</Button>
-                </ButtonGroup>
+                <Box display='flex' alignItems='center'>
+                    <ButtonGroup gap='2'>
+                        <Button as={Link} to='/login' colorScheme='primary' variant='outline' borderRadius='none'>Log In</Button>
+                        <Button colorScheme='primary' borderRadius='none'>Sign Up</Button>
+                    </ButtonGroup>
+                    <Box>
+                        <Menu placement="bottom-end" isLazy>
+                            <MenuButton as={Avatar} name='Dan Abrahmov' src='https://bit.ly/dan-abramov' cursor='pointer' />
+                            <MenuList borderRadius='none' mt={5}>
+                                <MenuGroup title='Abu Naim'>
+                                    <MenuItem>My Account</MenuItem>
+                                    <MenuItem>Dashboard</MenuItem>
+                                    <MenuItem textColor='primary.500'>Logout</MenuItem>
+                                </MenuGroup>
+                            </MenuList>
+                        </Menu>
+                    </Box>
+                </Box>
             </Flex>
         </Box>
     );

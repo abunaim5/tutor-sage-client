@@ -37,11 +37,11 @@ const Footer = () => {
                 <Box>
                     <Heading size='md'>Popular Courses</Heading>
                     <Box display='flex' flexDir='column' gap={2} mt={6}>
-                        <Link to='/about'>Introduction to Programming</Link>
-                        <Link to='/about'>Cybersecurity Fundamentals</Link>
-                        <Link to='/about'>Data Science and Analytics</Link>
-                        <Link to='/about'>Business Communication</Link>
-                        <Link to='/about'>Digital Marketing</Link>
+                        <Link to='/'>Introduction to Programming</Link>
+                        <Link to='/'>Cybersecurity Fundamentals</Link>
+                        <Link to='/'>Data Science and Analytics</Link>
+                        <Link to='/'>Business Communication</Link>
+                        <Link to='/'>Digital Marketing</Link>
                     </Box>
                 </Box>
                 <Box>
@@ -49,7 +49,7 @@ const Footer = () => {
                     <Text mt={3}>Subscribe to our newsletter for the latest news, updates, and special offers delivered straight to your inbox!</Text>
                     <Box mt={6}>
                         <InputGroup>
-                            <Input type='email' name="email" autoComplete="email" placeholder='Email' borderRadius='none' />
+                            <Input type='email' name="email" autoComplete="email" placeholder='Email' borderRadius='none' focusBorderColor="primary.500" />
                             <InputRightAddon as={Button} borderRadius='none'>Subscribe</InputRightAddon>
                         </InputGroup>
                     </Box>

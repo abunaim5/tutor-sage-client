@@ -9,7 +9,7 @@ const Banner = () => {
     return (
         <Box>
             <Carousel showThumbs={false} interval={3000} transitionTime={2000} infiniteLoop={true}>
-                <Box bgImg={`url(${banner1})`} h='calc(100vh - 96px)' bgPos='top' bgAttachment='fixed' bgSize='cover' bgRepeat='no-repeat'>
+                <Box bgImg={`url(${banner1})`} h='calc(100vh - 104px)' bgPos='top' bgAttachment='fixed' bgSize='cover' bgRepeat='no-repeat'>
                     <Box h='100%' className="bg-black/20" textColor='white' display='flex' alignItems='center' >
                         <Box textAlign='left' w='8xl' mx='auto' px={2}>
                             <Heading size='4xl' fontFamily='body'>Empower Your Learning</Heading>
