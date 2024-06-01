@@ -61,7 +61,7 @@ const SignUp = () => {
                         <InputGroup>
                             <Input {...register("password", { required: 'Password is required.', minLength: {value: 6, message: 'Password should be 6 character or more.'} })} type={showPassword ? 'text' : 'password'} placeholder='Password' borderRadius='none' focusBorderColor="primary.300" autoComplete="pass" />
                             <InputRightElement onClick={() => setShowPassword(!showPassword)}>
-                                {showPassword ? <ViewOffIcon color='gray' /> : <ViewIcon color='gray' />}
+                                {showPassword ? <ViewOffIcon fontSize='18px' color='gray' /> : <ViewIcon fontSize='18px' color='gray' />}
                             </InputRightElement>
                         </InputGroup>
                         <FormErrorMessage>{errors.password && errors.password?.message}</FormErrorMessage>

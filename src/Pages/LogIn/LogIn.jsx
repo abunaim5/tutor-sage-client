@@ -1,26 +1,66 @@
-import { ViewIcon } from "@chakra-ui/icons";
-import { Box, Button, ButtonGroup, Card, FormControl, FormLabel, Heading, IconButton, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { Box, Button, ButtonGroup, Card, FormControl, FormErrorMessage, FormLabel, Heading, IconButton, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { FaFacebookF, FaGoogle, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const LogIn = () => {
+    const [showPassword, setShowPassword] = useState(false);
+    const { logInUser } = useAuth();
+
+    const {
+        register,
+        handleSubmit,
+        // watch,
+        formState: { errors },
+    } = useForm()
+    const onSubmit = (data) => {
+        const { email, password } = data;
+        console.log(data)
+        logInUser(email, password)
+            .then(res => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Successfully logged in",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                console.log(res.user)
+            }).catch(error => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: `${error.message === 'Firebase: Error (auth/invalid-credential).' ? 'Invalid email or password' : error.message}`,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                console.log(error.message);
+            })
+    }
+
     return (
         <Box h='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' >
             <Card minW='lg' p={6} rounded='none'>
                 <Heading textAlign='center' textColor='#252525'>Sign In</Heading>
-                <form className="mt-8">
-                    <FormControl isRequired>
+                <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
+                    <FormControl isRequired isInvalid={errors.email}>
                         <FormLabel>Email</FormLabel>
-                        <Input type="email" placeholder='Email' borderRadius='none' focusBorderColor="primary.300" />
+                        <Input {...register("email", { required: 'Email address is required.' })} type="email" placeholder='Email' borderRadius='none' focusBorderColor="primary.300" autoComplete="email" />
+                        <FormErrorMessage>{errors.email && errors.email?.message}</FormErrorMessage>
                     </FormControl>
-                    <FormControl isRequired mt={6}>
+                    <FormControl isRequired mt={6} isInvalid={errors.password}>
                         <FormLabel>Password</FormLabel>
                         <InputGroup>
-                            <Input type="password" placeholder='Password' borderRadius='none' focusBorderColor="primary.300" />
-                            <InputRightElement>
-                                <ViewIcon fontSize='18px' color='gray' />
+                            <Input {...register("password", { required: 'Password is required.' })} type={showPassword ? 'text' : 'password'} placeholder='Password' borderRadius='none' focusBorderColor="primary.300" autoComplete="pass" />
+                            <InputRightElement onClick={() => setShowPassword(!showPassword)}>
+                                {showPassword ? <ViewOffIcon fontSize='18px' color='gray' /> : <ViewIcon fontSize='18px' color='gray' />}
                             </InputRightElement>
                         </InputGroup>
+                        <FormErrorMessage>{errors.password && errors.password?.message}</FormErrorMessage>
                     </FormControl>
                     <Button type="submit" colorScheme="primary" borderRadius='none' mt={6} w='100%'>Log In</Button>
                 </form>

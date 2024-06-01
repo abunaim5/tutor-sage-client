@@ -69,7 +69,7 @@ const NavBar = () => {
                     {
                         user ? <Box>
                             <Menu placement="bottom-end" isLazy>
-                                <MenuButton as={Avatar} src={user?.photoUrl} cursor='pointer' />
+                                <MenuButton as={Avatar} src={user?.photoURL} cursor='pointer' />
                                 <MenuList borderRadius='none' mt={5}>
                                     <MenuGroup title={user?.displayName || 'Unknown User'}>
                                         <MenuItem>My Account</MenuItem>
