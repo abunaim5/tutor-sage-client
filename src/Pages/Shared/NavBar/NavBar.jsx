@@ -1,8 +1,14 @@
 import { Avatar, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, ButtonGroup, Flex, Heading, Menu, MenuButton, MenuGroup, MenuItem, MenuList, Portal, Spacer, useDisclosure } from "@chakra-ui/react";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 const NavBar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const { user, loading } = useAuth();
+
+    if (loading) {
+        return;
+    }
 
     return (
         <Box p={7} w='full'>
@@ -44,22 +50,23 @@ const NavBar = () => {
                 </Box>
                 <Spacer />
                 <Box display='flex' alignItems='center'>
-                    <ButtonGroup gap='2'>
-                        <Button as={Link} to='/login' colorScheme='primary' variant='outline' borderRadius='none'>Log In</Button>
-                        <Button colorScheme='primary' borderRadius='none'>Sign Up</Button>
-                    </ButtonGroup>
-                    <Box>
-                        <Menu placement="bottom-end" isLazy>
-                            <MenuButton as={Avatar} name='Dan Abrahmov' src='https://bit.ly/dan-abramov' cursor='pointer' />
-                            <MenuList borderRadius='none' mt={5}>
-                                <MenuGroup title='Abu Naim'>
-                                    <MenuItem>My Account</MenuItem>
-                                    <MenuItem>Dashboard</MenuItem>
-                                    <MenuItem textColor='primary.500'>Logout</MenuItem>
-                                </MenuGroup>
-                            </MenuList>
-                        </Menu>
-                    </Box>
+                    {
+                        user ? <Box>
+                            <Menu placement="bottom-end" isLazy>
+                                <MenuButton as={Avatar} src={user?.photoUrl} cursor='pointer' />
+                                <MenuList borderRadius='none' mt={5}>
+                                    <MenuGroup title={user?.displayName || 'Unknown User'}>
+                                        <MenuItem>My Account</MenuItem>
+                                        <MenuItem>Dashboard</MenuItem>
+                                        <MenuItem textColor='primary.500'>Logout</MenuItem>
+                                    </MenuGroup>
+                                </MenuList>
+                            </Menu>
+                        </Box> : <ButtonGroup gap='2'>
+                            <Button as={Link} to='/login' colorScheme='primary' variant='outline' borderRadius='none'>Log In</Button>
+                            <Button as={Link} to='/register' colorScheme='primary' borderRadius='none'>Sign Up</Button>
+                        </ButtonGroup>
+                    }
                 </Box>
             </Flex>
         </Box>

@@ -6,6 +6,7 @@ import router from './Routes/Routes/Routes'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import '@fontsource/poppins';
 import '@fontsource/croissant-one';
+import AuthProvider from './Providers/AuthProvider/AuthProvider'
 
 const fonts = {
   logo: {
@@ -33,8 +34,10 @@ const theme = extendTheme({ colors, fonts })
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <RouterProvider router={router} />
-    </ChakraProvider>
+    <AuthProvider>
+      <ChakraProvider theme={theme}>
+        <RouterProvider router={router} />
+      </ChakraProvider>
+    </AuthProvider>
   </React.StrictMode>
 )
