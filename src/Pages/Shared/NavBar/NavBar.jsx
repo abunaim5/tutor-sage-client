@@ -1,10 +1,26 @@
 import { Avatar, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, ButtonGroup, Flex, Heading, Menu, MenuButton, MenuGroup, MenuItem, MenuList, Portal, Spacer, useDisclosure } from "@chakra-ui/react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const NavBar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const { user, loading } = useAuth();
+    const { user, loading, logOutUser } = useAuth();
+
+    const handleLogOutUser = () => {
+        logOutUser()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Sign out successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }).catch(error => {
+                console.error(error);
+            })
+    }
 
     if (loading) {
         return;
@@ -58,7 +74,7 @@ const NavBar = () => {
                                     <MenuGroup title={user?.displayName || 'Unknown User'}>
                                         <MenuItem>My Account</MenuItem>
                                         <MenuItem>Dashboard</MenuItem>
-                                        <MenuItem textColor='primary.500'>Logout</MenuItem>
+                                        <MenuItem textColor='primary.500' onClick={handleLogOutUser}>Logout</MenuItem>
                                     </MenuGroup>
                                 </MenuList>
                             </Menu>
