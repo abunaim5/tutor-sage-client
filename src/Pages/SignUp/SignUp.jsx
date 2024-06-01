@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const {createUser} = useAuth();
+    const { createUser, updateUserProfile } = useAuth();
 
     const {
         register,
@@ -18,27 +18,32 @@ const SignUp = () => {
         formState: { errors },
     } = useForm()
     const onSubmit = (data) => {
-        const {email, password} = data;
+        const { name, email, password, photo } = data;
         createUser(email, password)
-        .then(res => {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Successfully register",
-                showConfirmButton: false,
-                timer: 1500
-              });
-            console.log(res.user)
-        }).catch(error => {
-            Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: `${error.message === 'Firebase: Error (auth/email-already-in-use).' ? 'Email address already exist' : error.message}`,
-                showConfirmButton: false,
-                timer: 2000
-              });
-            console.log(error.message);
-        })
+            .then(res => {
+                updateUserProfile(name, photo)
+                    .then(() => {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Successfully register",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }).catch(error => {
+                        console.log(error);
+                    })
+                console.log(res.user)
+            }).catch(error => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: `${error.message === 'Firebase: Error (auth/email-already-in-use).' ? 'Email address already exist' : error.message}`,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                console.log(error.message);
+            })
     }
 
     return (
@@ -59,7 +64,7 @@ const SignUp = () => {
                     <FormControl isRequired isInvalid={errors.password}>
                         <FormLabel>Password</FormLabel>
                         <InputGroup>
-                            <Input {...register("password", { required: 'Password is required.', minLength: {value: 6, message: 'Password should be 6 character or more.'} })} type={showPassword ? 'text' : 'password'} placeholder='Password' borderRadius='none' focusBorderColor="primary.300" autoComplete="pass" />
+                            <Input {...register("password", { required: 'Password is required.', minLength: { value: 6, message: 'Password should be 6 character or more.' } })} type={showPassword ? 'text' : 'password'} placeholder='Password' borderRadius='none' focusBorderColor="primary.300" autoComplete="pass" />
                             <InputRightElement onClick={() => setShowPassword(!showPassword)}>
                                 {showPassword ? <ViewOffIcon fontSize='18px' color='gray' /> : <ViewIcon fontSize='18px' color='gray' />}
                             </InputRightElement>
