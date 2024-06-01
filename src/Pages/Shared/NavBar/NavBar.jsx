@@ -3,9 +3,9 @@ import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
     return (
-        <Box p={6} w='full'>
-            <Flex minWidth='max-content' alignItems='center' gap='2'>
-                <Box p='2'>
+        <Box p={8} w='full'>
+            <Flex maxW='8xl' mx='auto' alignItems='center' gap='2' px={2}>
+                <Box>
                     <Heading size='lg' as={Link} to='/' textColor='#252525' fontFamily='logo.croissant' >TutorSa<span className="text-[#FF1949]">g</span>e</Heading>
                 </Box>
                 <Spacer />
