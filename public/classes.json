@@ -1,0 +1,50 @@
+[
+    {
+      "title": "Advanced Mathematics",
+      "posted_by": "Dr. John Smith",
+      "image_url": "https://i.postimg.cc/rm97s59B/1.png",
+      "price": 150.00,
+      "short_description": "Dive deep into advanced calculus and algebra with Dr. Smith.",
+      "total_enrolment": 120
+    },
+    {
+      "title": "Introduction to Psychology",
+      "posted_by": "Prof. Emily Johnson",
+      "image_url": "https://i.postimg.cc/q7yPfP6M/2.png",
+      "price": 100.00,
+      "short_description": "Explore the basics of human behavior and mental processes.",
+      "total_enrolment": 200
+    },
+    {
+      "title": "Modern Web Development",
+      "posted_by": "Mr. Michael Brown",
+      "image_url": "https://i.postimg.cc/QdR2y8ty/3.png",
+      "price": 180.00,
+      "short_description": "Learn the latest techniques in HTML, CSS, and JavaScript.",
+      "total_enrolment": 250
+    },
+    {
+      "title": "Creative Writing Workshop",
+      "posted_by": "Ms. Sarah Davis",
+      "image_url": "https://i.postimg.cc/Ss4wmgcL/4.png",
+      "price": 75.00,
+      "short_description": "Enhance your writing skills with fun and interactive exercises.",
+      "total_enrolment": 80
+    },
+    {
+      "title": "Basic Guitar Lessons",
+      "posted_by": "Mr. James Wilson",
+      "image_url": "https://i.postimg.cc/SNRHQ2YP/5.png",
+      "price": 90.00,
+      "short_description": "Learn to play the guitar from scratch with easy-to-follow lessons.",
+      "total_enrolment": 150
+    },
+    {
+      "title": "Digital Marketing Essentials",
+      "posted_by": "Ms. Laura Martinez",
+      "image_url": "https://i.postimg.cc/YqPZvr1C/6.png",
+      "price": 200.00,
+      "short_description": "Master the fundamentals of SEO, social media, and online advertising.",
+      "total_enrolment": 300
+    }
+  ]
