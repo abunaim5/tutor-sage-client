@@ -20,7 +20,7 @@ const PopularClasses = () => {
     return (
         <Box maxW='8xl' mx='auto' my={20}>
           <Heading fontFamily='body'>Popular Classes</Heading>
-          <Box h={2} bg='primary.500' w={20} mt={4} mb={16} />
+          <Box h={1} bg='primary.500' w={14} mt={6} mb={16} />
             <Swiper
                 slidesPerView={1}
                 spaceBetween={10}
