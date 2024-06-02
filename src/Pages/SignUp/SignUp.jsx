@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const { createUser, updateUserProfile } = useAuth();
+    const { createUser, updateUserProfile, logInUserWithGoogle } = useAuth();
 
     const {
         register,
@@ -44,7 +44,30 @@ const SignUp = () => {
                 });
                 console.log(error.message);
             })
-    }
+    };
+
+    const handleLogInWithGoogle = () => {
+        logInUserWithGoogle()
+            .then(res => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Successfully logged in",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                console.log(res.user)
+            }).catch(error => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: `${error?.message}`,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                console.log(error.message);
+            })
+    };
 
     return (
         <Box h='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' >
@@ -87,6 +110,7 @@ const SignUp = () => {
                     <Text textAlign='center'>SignUp with social accounts</Text>
                     <ButtonGroup justifyContent='center' w='100%' mt={3}>
                         <IconButton
+                            onClick={handleLogInWithGoogle}
                             isRound
                             variant='outline'
                             colorScheme='primary'
