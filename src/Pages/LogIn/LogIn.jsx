@@ -6,10 +6,20 @@ import { FaFacebookF, FaGoogle, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useMutation } from "@tanstack/react-query";
 
 const LogIn = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { logInUser, logInUserWithGoogle } = useAuth();
+    const axiosPublic = useAxiosPublic();
+
+    const { isSuccess, mutate } = useMutation({
+        mutationFn: async (userInfo) => {
+            const res = await axiosPublic.post('/users', userInfo);
+            return res;
+        }
+    });
 
     const {
         register,
@@ -45,13 +55,12 @@ const LogIn = () => {
     const handleLogInWithGoogle = () => {
         logInUserWithGoogle()
             .then(res => {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Successfully logged in",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                const userInfo = {
+                    name: res.user.displayName,
+                    email: res.user.email,
+                    photo: res.user.photoURL
+                }
+                mutate(userInfo);
                 console.log(res.user)
             }).catch(error => {
                 Swal.fire({
@@ -64,6 +73,16 @@ const LogIn = () => {
                 console.log(error.message);
             })
     };
+
+    if (isSuccess) {
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Successfully logged in",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
 
     return (
         <Box minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' >

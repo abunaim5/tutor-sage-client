@@ -6,6 +6,7 @@ import SignUp from "../../Pages/SignUp/SignUp";
 import AllClasses from "../../Pages/AllClasses/AllClasses";
 import ClassDetails from "../../Pages/ClassDetails/ClassDetails";
 import BecomeATutor from "../../Pages/BecomeATutor/BecomeATutor";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
         },
         {
           path: '/class-details/:id',
-          element: <ClassDetails />
+          element: <PrivateRoute><ClassDetails /></PrivateRoute>
         },
         {
           path: '/become-a-tutor',
