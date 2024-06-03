@@ -6,10 +6,21 @@ import { FaFacebookF, FaGoogle, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useMutation } from "@tanstack/react-query";
 
 const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [userCreateMethod, setUserCreateMethod] = useState('')
     const { createUser, updateUserProfile, logInUserWithGoogle } = useAuth();
+    const axiosPublic = useAxiosPublic();
+
+    const { isSuccess, mutate } = useMutation({
+        mutationFn: async (userInfo) => {
+            const res = await axiosPublic.post('/users', userInfo);
+            return res;
+        }
+    });
 
     const {
         register,
@@ -23,13 +34,13 @@ const SignUp = () => {
             .then(res => {
                 updateUserProfile(name, photo)
                     .then(() => {
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Successfully register",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                        const userInfo = {
+                            name: name,
+                            email: email,
+                            photo: photo
+                        }
+                        mutate(userInfo);
+                        setUserCreateMethod('email');
                     }).catch(error => {
                         console.log(error);
                     })
@@ -49,14 +60,13 @@ const SignUp = () => {
     const handleLogInWithGoogle = () => {
         logInUserWithGoogle()
             .then(res => {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Successfully logged in",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                console.log(res.user)
+                const userInfo = {
+                    name: res.user.displayName,
+                    email: res.user.email,
+                    photo: res.user.photoURL
+                }
+                mutate(userInfo);
+                setUserCreateMethod('google');
             }).catch(error => {
                 Swal.fire({
                     position: "top-end",
@@ -68,6 +78,16 @@ const SignUp = () => {
                 console.log(error.message);
             })
     };
+
+    if (isSuccess) {
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${userCreateMethod === 'email' && 'Successfully register' || userCreateMethod === 'google' && 'Successfully logged in'}`,
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
 
     return (
         <Box minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' >
