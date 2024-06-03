@@ -56,7 +56,7 @@ const PopularClasses = () => {
         className="mySwiper"
       >
         {
-          classes.map((cls, idx) => <SwiperSlide key={idx}>
+          classes.map(cls => <SwiperSlide key={cls._id}>
             <ClassCard cls={cls} />
           </SwiperSlide>)
         }

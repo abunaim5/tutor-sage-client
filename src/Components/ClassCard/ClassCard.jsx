@@ -1,9 +1,10 @@
 import { Box, Button, Card, CardBody, CardFooter, Divider, Heading, Icon, Image, Stack, Text } from "@chakra-ui/react";
 import { RiAttachmentLine } from "react-icons/ri";
 import { FaRegStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ClassCard = ({cls}) => {
-    const {title, posted_by, image_url, price, short_description, total_enrolment} = cls;
+    const {_id, title, posted_by, image_url, price, short_description, total_enrolment} = cls;
 
     return (
         <Card borderRadius='none' shadow='none'>
@@ -32,7 +33,7 @@ const ClassCard = ({cls}) => {
             </CardBody>
             <Divider />
             <CardFooter px={0} py={5}>
-                <Button variant='solid' colorScheme='primary' borderRadius='none' w='full'>
+                <Button as={Link} to={`/class-details/${_id}`} variant='solid' colorScheme='primary' borderRadius='none' w='full'>
                     Enroll Now
                 </Button>
             </CardFooter>
