@@ -7,6 +7,7 @@ import AllClasses from "../../Pages/AllClasses/AllClasses";
 import ClassDetails from "../../Pages/ClassDetails/ClassDetails";
 import BecomeATutor from "../../Pages/BecomeATutor/BecomeATutor";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Dashboard from "../../Layout/Dashboard";
 
 
 const router = createBrowserRouter([
@@ -37,10 +38,20 @@ const router = createBrowserRouter([
         },
         {
           path: '/become-a-tutor',
-          element: <BecomeATutor />
+          element: <PrivateRoute><BecomeATutor /></PrivateRoute>
         }
       ],
     },
+    {
+      path: '/dashboard',
+      element: <Dashboard />,
+      // errorElement: <ErrorPage />,
+      // children: [
+      //   {
+      //     path: 
+      //   }
+      // ]
+    }
   ]);
 
   export default router;

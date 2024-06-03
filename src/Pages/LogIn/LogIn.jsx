@@ -3,7 +3,7 @@ import { Box, Button, ButtonGroup, Card, FormControl, FormErrorMessage, FormLabe
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaFacebookF, FaGoogle, FaTwitter } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -13,6 +13,9 @@ const LogIn = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { logInUser, logInUserWithGoogle } = useAuth();
     const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const { isSuccess, mutate } = useMutation({
         mutationFn: async (userInfo) => {
@@ -39,6 +42,7 @@ const LogIn = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                navigate(from, {replace: true});
                 console.log(res.user)
             }).catch(error => {
                 Swal.fire({
@@ -82,6 +86,7 @@ const LogIn = () => {
             showConfirmButton: false,
             timer: 1500
         });
+        navigate(from, {replace: true});
     }
 
     return (

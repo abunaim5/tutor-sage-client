@@ -3,7 +3,7 @@ import { Box, Button, ButtonGroup, Card, FormControl, FormErrorMessage, FormLabe
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaFacebookF, FaGoogle, FaTwitter } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -14,6 +14,7 @@ const SignUp = () => {
     const [userCreateMethod, setUserCreateMethod] = useState('')
     const { createUser, updateUserProfile, logInUserWithGoogle } = useAuth();
     const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
 
     const { isSuccess, mutate } = useMutation({
         mutationFn: async (userInfo) => {
@@ -87,6 +88,7 @@ const SignUp = () => {
             showConfirmButton: false,
             timer: 2000
         });
+        navigate('/')
     }
 
     return (
