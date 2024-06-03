@@ -70,7 +70,7 @@ const SignUp = () => {
     };
 
     return (
-        <Box h='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' >
+        <Box minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' >
             <Card minW='lg' p={6} rounded='none'>
                 <Heading textAlign='center' textColor='#252525'>Sign Up</Heading>
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-8">

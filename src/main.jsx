@@ -7,6 +7,7 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import '@fontsource/poppins';
 import '@fontsource/croissant-one';
 import AuthProvider from './Providers/AuthProvider/AuthProvider'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const fonts = {
   logo: {
@@ -28,16 +29,20 @@ const colors = {
     800: '#860025',
     900: '#59001A',
   },
-}
+};
+
+const queryClient = new QueryClient()
 
 const theme = extendTheme({ colors, fonts })
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <ChakraProvider theme={theme}>
-        <RouterProvider router={router} />
-      </ChakraProvider>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <ChakraProvider theme={theme}>
+          <RouterProvider router={router} />
+        </ChakraProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 )

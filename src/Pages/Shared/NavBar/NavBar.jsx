@@ -28,7 +28,7 @@ const NavBar = () => {
 
     return (
         <Box p={7} w='full'>
-            <Flex maxW='8xl' mx='auto' alignItems='center' gap='2' px={2}>
+            <Flex maxW='8xl' mx='auto' alignItems='center' gap='2'>
                 <Box>
                     <Heading size='lg' as={Link} to='/' textColor='#252525' fontFamily='logo.croissant' >TutorSa<span className="text-[#FF1949]">g</span>e</Heading>
                 </Box>
@@ -39,7 +39,7 @@ const NavBar = () => {
                             <BreadcrumbLink as={NavLink} to='/' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Home</BreadcrumbLink>
                         </BreadcrumbItem>
                         <BreadcrumbItem _hover={{ color: '#FF1949' }} mx={5}>
-                            <BreadcrumbLink as={NavLink} to='/f' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Classes</BreadcrumbLink>
+                            <BreadcrumbLink as={NavLink} to='/classes' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Classes</BreadcrumbLink>
                         </BreadcrumbItem>
                         {/* <BreadcrumbItem _hover={{ color: '#FF1949' }}>
                             <BreadcrumbLink as={NavLink} to='/p' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Teach on TutorSage</BreadcrumbLink>

@@ -9,7 +9,7 @@ const Footer = () => {
 
     return (
         <Box bg='#252525'>
-            <Box maxW='8xl' mx='auto' textColor='white' py={20} display='grid' gridTemplateColumns='repeat(4, 1fr)' gap={6} px={2}>
+            <Box maxW='8xl' mx='auto' textColor='white' py={20} display='grid' gridTemplateColumns='repeat(4, 1fr)' gap={6} px={7}>
                 <Box>
                     <Box>
                         <Heading size='lg' as={Link} to='/' fontFamily='logo.croissant' >TutorSa<span className="text-[#FF1949]">g</span>e</Heading>
