@@ -9,6 +9,7 @@ import BecomeATutor from "../../Pages/BecomeATutor/BecomeATutor";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Dashboard from "../../Layout/Dashboard";
 import TeacherRequest from "../../Pages/Dashboard/TeacherRequest/TeacherRequest";
+import Users from "../../Pages/Dashboard/Users/Users";
 
 
 const router = createBrowserRouter([
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         {
           path: '/dashboard/teacher-requests',
           element: <TeacherRequest />
+        },
+        {
+          path: '/dashboard/users',
+          element: <Users />
         }
       ]
     }

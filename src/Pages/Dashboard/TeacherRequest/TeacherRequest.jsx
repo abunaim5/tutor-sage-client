@@ -98,7 +98,7 @@ const TeacherRequest = () => {
         <Box mt={10} mr={2}>
             <Card style={{height: '100%'}} pt={2} borderRadius='none'>
                 <DataTable
-                    title={`Teacher Requests: ${teacherRequests.length}`}
+                    title={`Teacher Requests (${teacherRequests.length})`}
                     columns={columns}
                     data={requestData}
                     pagination

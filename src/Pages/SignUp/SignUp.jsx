@@ -11,12 +11,11 @@ import { useMutation } from "@tanstack/react-query";
 
 const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const [userCreateMethod, setUserCreateMethod] = useState('')
     const { createUser, updateUserProfile, logInUserWithGoogle } = useAuth();
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
 
-    const { isSuccess, mutate } = useMutation({
+    const { mutate } = useMutation({
         mutationFn: async (userInfo) => {
             const res = await axiosPublic.post('/users', userInfo);
             return res;
@@ -41,7 +40,14 @@ const SignUp = () => {
                             photo: photo
                         }
                         mutate(userInfo);
-                        setUserCreateMethod('email');
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: 'Sign up successfully',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                        navigate('/')
                     }).catch(error => {
                         console.log(error);
                     })
@@ -62,12 +68,18 @@ const SignUp = () => {
         logInUserWithGoogle()
             .then(res => {
                 const userInfo = {
-                    name: res.user.displayName,
-                    email: res.user.email,
-                    photo: res.user.photoURL
+                    name: res?.user?.displayName,
+                    email: res?.user?.email,
+                    photo: res?.user?.photoURL
                 }
                 mutate(userInfo);
-                setUserCreateMethod('google');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: 'User logged in successfully',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
             }).catch(error => {
                 Swal.fire({
                     position: "top-end",
@@ -79,17 +91,6 @@ const SignUp = () => {
                 console.log(error.message);
             })
     };
-
-    if (isSuccess) {
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${userCreateMethod === 'email' && 'Successfully register' || userCreateMethod === 'google' && 'Successfully logged in'}`,
-            showConfirmButton: false,
-            timer: 2000
-        });
-        navigate('/')
-    }
 
     return (
         <Box minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' >
