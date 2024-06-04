@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Divider, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, useDisclosure } from "@chakra-ui/react";
 import React, { useState } from "react";
 // import useAuth from "../Hooks/useAuth";
 import { HamburgerIcon } from "@chakra-ui/icons";
@@ -13,7 +13,7 @@ const Dashboard = () => {
 
 
     return (
-        <Box>
+        <Box display='flex'>
             <Button colorScheme='primary' ref={btnRef} onClick={onOpen} borderRadius='none' p={8}>
                 <HamburgerIcon fontSize='4xl' />
             </Button>
@@ -26,16 +26,16 @@ const Dashboard = () => {
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton />
-                    <DrawerHeader>Dashboard</DrawerHeader>
+                    <DrawerHeader>Dashboard Menu</DrawerHeader>
 
                     <DrawerBody maxH='50%'>
                         {
                             isAdmin ? <>
-                            <Button as={NavLink} to='/dashboard' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Admin Home</Button>
+                            <Button as={NavLink} to='/dashboard/admin' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Admin Home</Button>
                             <Button as={NavLink} to='/dashboard/profile' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Profile</Button>
                             <Button as={NavLink} to='/dashboard/users' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Users</Button>
                             <Button as={NavLink} to='/dashboard/classes' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Classes</Button>
-                            <Button as={NavLink} to='/dashboard/requests' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Teacher Requests</Button>
+                            <Button as={NavLink} to='/dashboard/teacher-requests' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Teacher Requests</Button>
                         </> : isTeacher ? <>
                             <Button as={NavLink} to='/dashboard' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Teacher Home</Button>
                             <Button as={NavLink} to='/dashboard/profile' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Profile</Button>
@@ -57,7 +57,8 @@ const Dashboard = () => {
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
-            <Box>
+            <Box w='100%'>
+                <Heading as={Button} textAlign='center' w='100%' py={8} cursor='default'>{isAdmin ? 'Admin' : isTeacher ? 'Teacher' : 'Student'} Dashboard</Heading>
                 <Outlet />
             </Box>
         </Box>
