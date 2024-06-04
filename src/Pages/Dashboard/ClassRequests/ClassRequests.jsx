@@ -68,7 +68,7 @@ const ClassRequests = () => {
             });
             refetch();
         }
-    }
+    };
 
     const classRequestData = classRequests.map(cls => {
         return {

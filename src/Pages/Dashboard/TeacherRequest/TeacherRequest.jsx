@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import { Avatar, Box, Card, IconButton } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const columns = [
@@ -15,7 +16,7 @@ const columns = [
         name: 'Name',
         selector: row => row.name,
         sortable: true,
-        
+
     },
     {
         name: 'Title',
@@ -52,49 +53,74 @@ const columns = [
 const TeacherRequest = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { isLoading, data: teacherRequests = [] } = useQuery({
+    const { isLoading, data: teacherRequests = [], refetch } = useQuery({
         queryKey: ['teacherRequests'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/teacherRequests');
+            const res = await axiosSecure.get('/teacherRequests/admin');
             return res.data;
         }
     });
 
-    const requestData = teacherRequests.map(request => {
+    const handleTeacherApproval = async (teacher, status, role) => {
+        console.log(teacher, status)
+        const res = await axiosSecure.patch(`/teacherRequests/admin/${teacher?._id}`, { status });
+        if (res.data.modifiedCount > 0) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `Teacher request has been ${status}`,
+                showConfirmButton: false,
+                timer: 2000
+            });
+            if(status === 'Accepted'){
+                const res = await axiosSecure.patch(`/users/admin/${teacher.user_id}`, {role});
+                if(res.data.modifiedCount > 0){
+                    console.log(res.data);
+                }
+            }
+            refetch();
+        }
+    }
+
+    const requestData = teacherRequests.map(teacher => {
         return {
-            image: <Avatar name={request.name} src={request.photo} my={3} />,
-            name: request.name,
-            title: request.title,
-            experience: request.experience,
-            category: request.category,
-            status: `${request?.status ? request.status : 'Pending'}`,
+            image: <Avatar name={teacher.name} src={teacher.photo} my={3} />,
+            name: teacher.name,
+            title: teacher.title,
+            experience: teacher.experience,
+            category: teacher.category,
+            status: `${teacher?.status ? teacher.status : 'Pending'}`,
             approve: <IconButton
+                onClick={() => handleTeacherApproval(teacher, 'Accepted', 'Teacher')}
                 variant='solid'
                 colorScheme='green'
                 aria-label='Done'
                 fontSize='20px'
                 px={6}
                 icon={<CheckIcon />}
+                isDisabled={teacher?.status === 'Accepted' && true || teacher?.status === 'Rejected' && true}
             />,
             reject: <IconButton
+                onClick={() => handleTeacherApproval(teacher, 'Rejected')}
                 variant='solid'
                 colorScheme='red'
                 aria-label='Done'
                 fontSize='18px'
                 px={6}
                 icon={<CloseIcon />}
+                isDisabled={teacher?.status === 'Accepted' && true || teacher?.status === 'Rejected' && true}
             />
         }
 
     });
-    
+
     if (isLoading) {
         return;
     }
 
     return (
         <Box mt={10} mr={2}>
-            <Card style={{height: '100%'}} pt={2} borderRadius='none'>
+            <Card style={{ height: '100%' }} pt={2} borderRadius='none'>
                 <DataTable
                     title={`Teacher Requests (${teacherRequests.length})`}
                     columns={columns}

@@ -4,13 +4,21 @@ import Swal from "sweetalert2";
 import tutorImg from '../../assets/images/tutor.png'
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 const BecomeATutor = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
-    const {isSuccess,mutate} = useMutation({
-        mutationFn: async(requestData) => {
+    const {isLoading, data: userInfo = {}} = useQuery({
+        queryKey: ['user'],
+        queryFn: async() => {
+            const res = await axiosPublic.get(`/users/${user?.email}`);
+            return res.data;
+        }
+    });
+
+    const { isSuccess, mutate } = useMutation({
+        mutationFn: async (requestData) => {
             const res = await axiosPublic.post('/teacherRequests', requestData);
             return res;
         }
@@ -24,13 +32,14 @@ const BecomeATutor = () => {
     } = useForm()
     const onSubmit = (data) => {
         const requestData = {
-           ...data
+            ...data,
+            user_id: userInfo._id
         }
 
         mutate(requestData);
     };
 
-    if(isSuccess){
+    if (isSuccess) {
         Swal.fire({
             position: "top-end",
             icon: "success",
@@ -38,6 +47,10 @@ const BecomeATutor = () => {
             showConfirmButton: false,
             timer: 2000
         });
+    }
+
+    if(isLoading){
+        return;
     }
 
     return (
@@ -73,7 +86,7 @@ const BecomeATutor = () => {
                         <Box display='flex' gap={6}>
                             <FormControl isRequired isInvalid={errors.experience}>
                                 <FormLabel>Experience</FormLabel>
-                                <Select {...register("experience", { required: 'Experience is required.' })} placeholder='Select experience' borderRadius='none' focusBorderColor="primary.500" autoComplete="experience" sx={{'> option': {color: 'black'}}}>
+                                <Select {...register("experience", { required: 'Experience is required.' })} placeholder='Select experience' borderRadius='none' focusBorderColor="primary.500" autoComplete="experience" sx={{ '> option': { color: 'black' } }}>
                                     <option value='Beginner'>Beginner</option>
                                     <option value='Experienced'>Experienced</option>
                                     <option value='Mid level'>Mid level</option>
@@ -82,7 +95,7 @@ const BecomeATutor = () => {
                             </FormControl>
                             <FormControl isRequired isInvalid={errors.category}>
                                 <FormLabel>Category</FormLabel>
-                                <Select {...register("category", { required: 'Category is required.' })} placeholder='Select category' borderRadius='none' focusBorderColor="primary.500" autoComplete="category" sx={{'> option': {color: 'black'}}}>
+                                <Select {...register("category", { required: 'Category is required.' })} placeholder='Select category' borderRadius='none' focusBorderColor="primary.500" autoComplete="category" sx={{ '> option': { color: 'black' } }}>
                                     <option value='Web development'>Web development</option>
                                     <option value='Digital marketing'>Digital marketing</option>
                                     <option value='Creative writing'>Creative writing</option>

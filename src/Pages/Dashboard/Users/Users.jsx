@@ -46,14 +46,14 @@ const Users = () => {
     const { isLoading, data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users');
+            const res = await axiosSecure.get('/users/admin');
             return res.data;
         }
     });
 
 
-    const handleMakeAdmin = async (user) => {
-        const res = await axiosSecure.patch(`/users/admin/${user?._id}`);
+    const handleMakeAdmin = async (user, role) => {
+        const res = await axiosSecure.patch(`/users/admin/${user?._id}`, {role});
         if (res.data.modifiedCount > 0) {
             Swal.fire({
                 position: "top-end",
@@ -98,7 +98,7 @@ const Users = () => {
             name: user.name,
             email: user.email,
             role: user?.role && user.role || <IconButton
-                onClick={() => handleMakeAdmin(user)}
+                onClick={() => handleMakeAdmin(user, 'Admin')}
                 variant='solid'
                 colorScheme='green'
                 aria-label='Done'
