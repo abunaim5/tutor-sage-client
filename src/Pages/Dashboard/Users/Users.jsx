@@ -34,7 +34,7 @@ const columns = [
         // sortable: true
     },
     {
-        name: 'Delete',
+        name: 'Action',
         selector: row => row.delete,
         // sortable: true
     },

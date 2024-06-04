@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import DataTable from "react-data-table-component";
 import { Avatar, Box, Card, IconButton } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const columns = [
@@ -50,12 +50,12 @@ const columns = [
 ]
 
 const TeacherRequest = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const { isLoading, data: teacherRequests = [] } = useQuery({
         queryKey: ['teacherRequests'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/teacherRequests');
+            const res = await axiosSecure.get('/teacherRequests');
             return res.data;
         }
     });
@@ -88,8 +88,6 @@ const TeacherRequest = () => {
 
     });
     
-    console.log(teacherRequests)
-
     if (isLoading) {
         return;
     }

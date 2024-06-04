@@ -37,7 +37,7 @@ const Dashboard = () => {
                                 <Button as={NavLink} to='/dashboard/admin' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Admin Home</Button>
                                 <Button as={NavLink} to='/dashboard/profile' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Profile</Button>
                                 <Button as={NavLink} to='/dashboard/users' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Users</Button>
-                                <Button as={NavLink} to='/dashboard/classes' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Classes</Button>
+                                <Button as={NavLink} to='/dashboard/class-requests' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Classes</Button>
                                 <Button as={NavLink} to='/dashboard/teacher-requests' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Teacher Requests</Button>
                             </> : isTeacher ? <>
                                 <Button as={NavLink} to='/dashboard' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Teacher Home</Button>
