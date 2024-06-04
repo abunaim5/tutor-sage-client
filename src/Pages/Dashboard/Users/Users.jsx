@@ -1,10 +1,10 @@
 import { Avatar, Box, Card, IconButton } from "@chakra-ui/react";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { FaUsers } from "react-icons/fa";
 import DataTable from "react-data-table-component";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { DeleteIcon } from "@chakra-ui/icons";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const columns = [
     // {
@@ -41,19 +41,19 @@ const columns = [
 ]
 
 const Users = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const { isLoading, data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/users');
+            const res = await axiosSecure.get('/users');
             return res.data;
         }
     });
 
 
     const handleMakeAdmin = async (user) => {
-        const res = await axiosPublic.patch(`/users/admin/${user?._id}`);
+        const res = await axiosSecure.patch(`/users/admin/${user?._id}`);
         if (res.data.modifiedCount > 0) {
             Swal.fire({
                 position: "top-end",
@@ -64,6 +64,31 @@ const Users = () => {
             });
             refetch();
         }
+    };
+
+    const handleDeleteUser = user => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.delete(`/users/admin/${user?._id}`);
+                if (res.data.deletedCount > 0) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "User has been deleted.",
+                        icon: "success"
+                    });
+                    refetch();
+                }
+            }
+        });
+
     };
 
     const usersData = users.map((user) => {
@@ -89,6 +114,7 @@ const Users = () => {
                 fontSize='20px'
                 px={6}
                 icon={<DeleteIcon />}
+                isDisabled={user?.role === 'Admin' ? true : false}
             />
         }
     });
