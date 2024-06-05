@@ -3,6 +3,7 @@ import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Head
 // import { BiChat, BiLike, BiShare } from "react-icons/bi";
 // import { BsThreeDotsVertical } from "react-icons/bs";
 import { TbListDetails } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 const MyClassCard = ({ cls, user, handleDeleteClass }) => {
     const { _id, posted_by, email, title, image_url, price, short_description, long_description, status } = cls;
@@ -43,7 +44,7 @@ const MyClassCard = ({ cls, user, handleDeleteClass }) => {
                 <Button flex='1' variant='ghost' leftIcon={<TbListDetails />} isDisabled={status !== 'Accepted' && true}>
                     Details
                 </Button>
-                <Button flex='1' variant='ghost' leftIcon={<EditIcon />}>
+                <Button as={Link} to={`/dashboard/update-class/${_id}`} flex='1' variant='ghost' leftIcon={<EditIcon />}>
                     Update
                 </Button>
                 <Button onClick={()=> handleDeleteClass(_id)} flex='1' variant='ghost' leftIcon={<DeleteIcon />}>

@@ -13,6 +13,7 @@ import Users from "../../Pages/Dashboard/Users/Users";
 import ClassRequests from "../../Pages/Dashboard/ClassRequests/ClassRequests";
 import MyClass from "../../Pages/Dashboard/MyClass/MyClass";
 import AddClass from "../../Pages/Dashboard/AddClass/AddClass";
+import UpdateClass from "../../Pages/Dashboard/UpdateClass/UpdateClass";
 
 
 const router = createBrowserRouter([
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
         {
           path: '/dashboard/add-class',
           element: <AddClass />
+        },
+        {
+          path: '/dashboard/update-class/:id',
+          element: <UpdateClass />
         },
         {
           path: '/dashboard/my-class',
