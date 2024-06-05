@@ -97,7 +97,7 @@ const Users = () => {
             image: <Avatar name={user.name} src={user.photo} my={3} />,
             name: user.name,
             email: user.email,
-            role: user?.role && user.role || <IconButton
+            role: user?.role === 'Admin' ? user.role : <IconButton
                 onClick={() => handleMakeAdmin(user, 'Admin')}
                 variant='solid'
                 colorScheme='green'

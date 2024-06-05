@@ -7,8 +7,8 @@ import { NavLink, Outlet } from "react-router-dom";
 const Dashboard = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
-    const [isAdmin, setIsAdmin] = useState(true);
-    const [isTeacher, setIsTeacher] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [isTeacher, setIsTeacher] = useState(true);
     // const { user } = useAuth();
 
 
@@ -40,12 +40,12 @@ const Dashboard = () => {
                                 <Button as={NavLink} to='/dashboard/class-requests' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Classes</Button>
                                 <Button as={NavLink} to='/dashboard/teacher-requests' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Teacher Requests</Button>
                             </> : isTeacher ? <>
-                                <Button as={NavLink} to='/dashboard' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Teacher Home</Button>
+                                <Button as={NavLink} to='/dashboard/teacher' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Teacher Home</Button>
                                 <Button as={NavLink} to='/dashboard/profile' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Profile</Button>
-                                <Button as={NavLink} to='/dashboard/users' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>My Class</Button>
+                                <Button as={NavLink} to='/dashboard/my-class' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>My Class</Button>
                                 <Button as={NavLink} to='/dashboard/classes' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Add Class</Button>
                             </> : <>
-                                <Button as={NavLink} to='/dashboard' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>User Home</Button>
+                                <Button as={NavLink} to='/dashboard/student' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>User Home</Button>
                                 <Button as={NavLink} to='/dashboard/profile' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Profile</Button>
                                 <Button as={NavLink} to='/dashboard/my-enroll-class' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>My Enroll Class</Button>
                             </>
