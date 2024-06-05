@@ -4,8 +4,8 @@ import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Head
 // import { BsThreeDotsVertical } from "react-icons/bs";
 import { TbListDetails } from "react-icons/tb";
 
-const MyClassCard = ({ cls, user }) => {
-    const { posted_by, email, title, image_url, price, short_description, long_description, status } = cls;
+const MyClassCard = ({ cls, user, handleDeleteClass }) => {
+    const { _id, posted_by, email, title, image_url, price, short_description, long_description, status } = cls;
     return (
         <Card w='100%'>
             <CardHeader>
@@ -46,7 +46,7 @@ const MyClassCard = ({ cls, user }) => {
                 <Button flex='1' variant='ghost' leftIcon={<EditIcon />}>
                     Update
                 </Button>
-                <Button flex='1' variant='ghost' leftIcon={<DeleteIcon />}>
+                <Button onClick={()=> handleDeleteClass(_id)} flex='1' variant='ghost' leftIcon={<DeleteIcon />}>
                     Delete
                 </Button>
             </CardFooter>
