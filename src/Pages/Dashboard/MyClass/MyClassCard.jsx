@@ -7,7 +7,7 @@ import { TbListDetails } from "react-icons/tb";
 const MyClassCard = ({ cls, user }) => {
     const { posted_by, email, title, image_url, price, short_description, long_description, status } = cls;
     return (
-        <Card maxW='md'>
+        <Card w='100%'>
             <CardHeader>
                 <Flex spacing='4'>
                     <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
@@ -21,6 +21,7 @@ const MyClassCard = ({ cls, user }) => {
                 </Flex>
             </CardHeader>
             <CardBody>
+                <Text mb={4} fontWeight={600}>Class Status: {status}</Text>
                 <Text fontWeight={600} mb={2}>{short_description}</Text>
                 <Text>{long_description}</Text>
             </CardBody>
