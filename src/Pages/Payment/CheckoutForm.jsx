@@ -92,7 +92,7 @@ const CheckoutForm = ({ cls }) => {
                     transactionId: paymentIntent.id
                 }
                 mutate(enrollClassInfo);
-                const res = await axiosSecure.patch(`/classes/${cls._id}`, {total_enrolment: parseInt(cls?.total_enrolment) + 1});
+                const res = await axiosSecure.patch(`/enrollClasses/${cls._id}`, {total_enrolment: parseInt(cls?.total_enrolment) + 1});
                 console.log(res);
             }
         }

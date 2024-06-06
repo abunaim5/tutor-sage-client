@@ -15,6 +15,7 @@ import MyClass from "../../Pages/Dashboard/MyClass/MyClass";
 import AddClass from "../../Pages/Dashboard/AddClass/AddClass";
 import UpdateClass from "../../Pages/Dashboard/UpdateClass/UpdateClass";
 import Payment from "../../Pages/Payment/Payment";
+import MyEnrollClass from "../../Pages/Dashboard/MyEnrollClass/MyEnrollClass";
 
 
 const router = createBrowserRouter([
@@ -71,6 +72,7 @@ const router = createBrowserRouter([
           path: '/dashboard/class-requests',
           element: <ClassRequests />
         },
+
         // teachers related routes
         {
           path: '/dashboard/add-class',
@@ -83,6 +85,12 @@ const router = createBrowserRouter([
         {
           path: '/dashboard/my-class',
           element: <MyClass />
+        },
+
+        // students related routes
+        {
+          path: '/dashboard/my-enroll-class',
+          element: <MyEnrollClass />
         }
       ]
     }
