@@ -4,15 +4,23 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useMutation } from "@tanstack/react-query";
 
 const CheckoutForm = ({ cls }) => {
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
+    const [paymentSuccessStatus, setPaymentSuccessStatus] = useState('')
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
-    console.log(user)
+
+    const { mutate } = useMutation({
+        mutationFn: async (enrollClassInfo) => {
+            const res = await axiosSecure.post('/enrollClasses', enrollClassInfo);
+            return res;
+        }
+    })
 
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price: cls.price })
@@ -63,7 +71,6 @@ const CheckoutForm = ({ cls }) => {
         } else {
             console.log('[PaymentIntent]', paymentIntent);
             if (paymentIntent.status === 'succeeded') {
-                
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -71,6 +78,21 @@ const CheckoutForm = ({ cls }) => {
                     showConfirmButton: false,
                     timer: 2000
                 });
+                setPaymentSuccessStatus(paymentIntent.status);
+                const enrollClassInfo = {
+                    class_id: cls._id,
+                    title: cls.title,
+                    posted_by: cls.posted_by,
+                    image_url: cls.image_url,
+                    price: cls.price,
+                    short_description: cls.short_description,
+                    long_description: cls.long_description,
+                    email: cls.email,
+                    user_email: user?.email,
+                    user_name: user?.displayName,
+                    transactionId: paymentIntent.id
+                }
+                mutate(enrollClassInfo);
             }
         }
 
@@ -95,7 +117,7 @@ const CheckoutForm = ({ cls }) => {
                 }}
             />
             <Box textAlign='center' mt={10}>
-                <Button colorScheme="primary" borderRadius='none' px={10} type="submit" isDisabled={!stripe || !clientSecret}>
+                <Button colorScheme="primary" borderRadius='none' px={10} type="submit" isDisabled={!stripe || !clientSecret || paymentSuccessStatus}>
                     Pay
                 </Button>
                 <Text textAlign='center' textColor='red' mt={4}>{error}</Text>
