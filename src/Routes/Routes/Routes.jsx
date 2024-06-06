@@ -14,6 +14,7 @@ import ClassRequests from "../../Pages/Dashboard/ClassRequests/ClassRequests";
 import MyClass from "../../Pages/Dashboard/MyClass/MyClass";
 import AddClass from "../../Pages/Dashboard/AddClass/AddClass";
 import UpdateClass from "../../Pages/Dashboard/UpdateClass/UpdateClass";
+import Payment from "../../Pages/Payment/Payment";
 
 
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         {
           path: '/become-a-tutor',
           element: <PrivateRoute><BecomeATutor /></PrivateRoute>
+        },
+        {
+          path: '/payment/:id',
+          element: <Payment />
         }
       ],
     },

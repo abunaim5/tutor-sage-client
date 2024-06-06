@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, Heading, Image, Text } from "@chakra-ui/react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const ClassDetails = () => {
     const axiosPublic = useAxiosPublic();
@@ -15,7 +15,7 @@ const ClassDetails = () => {
         }
     });
 
-    const { title, posted_by, short_description, long_description, price, image_url } = cls;
+    const { _id, title, posted_by, short_description, long_description, price, image_url } = cls;
 
     if (isLoading) {
         return;
@@ -36,7 +36,7 @@ const ClassDetails = () => {
                     </Box>
                 </Box>
                 <Box>
-                    <Button colorScheme="primary" borderRadius='none' fontSize='xl' px={12} py={8}>Pay</Button>
+                    <Button as={Link} to={`/payment/${_id}`} colorScheme="primary" borderRadius='none' fontSize='xl' px={12} py={8}>Pay</Button>
                 </Box>
             </Box>
             <Image src={image_url} alt={`Image of ${title}`} w='100%' />
