@@ -31,6 +31,7 @@ const AddClass = () => {
             price: data.price,
             short_description: data.shortDes,
             long_description: data.longDes,
+            total_enrolment: 0,
             status: 'Pending'
         }
 

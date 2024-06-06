@@ -25,7 +25,6 @@ const CheckoutForm = ({ cls }) => {
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price: cls.price })
             .then(res => {
-                console.log(res.data.clientSecret);
                 setClientSecret(res.data.clientSecret);
             })
     }, [axiosSecure, cls.price])
@@ -93,6 +92,8 @@ const CheckoutForm = ({ cls }) => {
                     transactionId: paymentIntent.id
                 }
                 mutate(enrollClassInfo);
+                const res = await axiosSecure.patch(`/classes/${cls._id}`, {total_enrolment: parseInt(cls?.total_enrolment) + 1});
+                console.log(res);
             }
         }
 
