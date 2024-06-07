@@ -76,7 +76,7 @@ const MyClassDetails = () => {
                         <Heading textAlign='center' fontFamily='body' size='md'>Per Day Submitted</Heading>
                     </CardHeader>
                     <CardBody>
-                        <Text textAlign='center' fontSize='xl' fontWeight={600}>10</Text>
+                        <Text textAlign='center' fontSize='xl' fontWeight={600}>{cls?.assignment_submitted ? cls.assignment_submitted : 0}</Text>
                     </CardBody>
                 </Card>
             </SimpleGrid>

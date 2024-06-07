@@ -2,6 +2,7 @@ import { Avatar, Box, Button, Heading, Image, Text } from "@chakra-ui/react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
+import { Rating } from "react-simple-star-rating";
 
 const ClassDetails = () => {
     const axiosPublic = useAxiosPublic();
@@ -15,9 +16,18 @@ const ClassDetails = () => {
         }
     });
 
+    const { isPending, data: feedbacks = [] } = useQuery({
+        queryKey: ['feedbacks'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/terFeedbacks/${id}`);
+            return res.data;
+        }
+    });
+    console.log(feedbacks);
+
     const { _id, title, posted_by, short_description, long_description, price, image_url } = cls;
 
-    if (isLoading) {
+    if (isLoading || isPending) {
         return;
     }
 
@@ -45,6 +55,29 @@ const ClassDetails = () => {
                 <Box h={1} bg='primary.500' w={12} mt={3} mb={10} />
                 <Heading fontFamily='body' mb={4}>About this course</Heading>
                 <Text maxW='7xl'>{long_description}</Text>
+            </Box>
+            <Box mt={20}>
+                <Text fontSize='2xl'>Feedbacks</Text>
+                <Box h={1} bg='primary.500' w={12} mt={3} mb={10} />
+                <Heading fontFamily='body' mb={10} fontSize='2xl'>Students feedback</Heading>
+                <Box>
+                    {
+                        feedbacks.length > 0 ? feedbacks.map(feedback => <Box key={feedback._id} mt={6}>
+                            <Avatar name={feedback.user_name} src={feedback.user_photo} />
+                            <Text fontWeight={600} fontSize='xl' mt={2}>{feedback.user_name}</Text>
+                            <Text mt={2} maxW='3xl'>{feedback.description}</Text>
+                            <Box display='flex' alignItems='center' gap={3} mt={4}>
+                                <Text fontWeight={600}>Rating:</Text>
+                                <Rating
+                                    readonly
+                                    initialValue={feedback.rating}
+                                    size={24}
+                                    SVGstyle={{ display: 'inline' }}
+                                />
+                            </Box>
+                        </Box>) : <Text textColor='red'>There is no feedback yet.</Text>
+                    }
+                </Box>
             </Box>
         </Box>
     );

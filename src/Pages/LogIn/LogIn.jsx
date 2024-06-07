@@ -34,7 +34,7 @@ const LogIn = () => {
         const { email, password } = data;
         console.log(data)
         logInUser(email, password)
-            .then(res => {
+            .then(() => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -42,8 +42,7 @@ const LogIn = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate(from, {replace: true});
-                console.log(res.user)
+                navigate(from, { replace: true });
             }).catch(error => {
                 Swal.fire({
                     position: "top-end",
@@ -86,7 +85,7 @@ const LogIn = () => {
             showConfirmButton: false,
             timer: 1500
         });
-        navigate(from, {replace: true});
+        navigate(from, { replace: true });
     }
 
     return (

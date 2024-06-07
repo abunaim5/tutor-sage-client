@@ -8,7 +8,7 @@ const Dashboard = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
     const [isAdmin, setIsAdmin] = useState(false);
-    const [isTeacher, setIsTeacher] = useState(false);
+    const [isTeacher, setIsTeacher] = useState(true);
     // const { user } = useAuth();
 
 
