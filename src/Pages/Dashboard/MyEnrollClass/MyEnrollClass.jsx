@@ -8,16 +8,17 @@ const MyEnrollClass = () => {
     const axiosSecure = useAxiosSecure();
     const { user, loading } = useAuth();
 
-    const { isLoading, data: enrollClasses = [] } = useQuery({
-        queryKey: ['enrollClasses'],
+    const { isPending, data: enrollClasses = [] } = useQuery({
+        queryKey: ['enrollClasses', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/enrollClasses/${user?.email}`);
+            const res = await axiosSecure.get(`/enrollClass/${user?.email}`);
             return res.data;
-        }
+        },
+        enabled: !!user?.email
     });
-    console.log(enrollClasses, user?.email);
+    // console.log(enrollClasses, user?.email);
 
-    if (isLoading || loading) {
+    if (isPending || loading) {
         return;
     }
 

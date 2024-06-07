@@ -1,4 +1,4 @@
-import { Box, Button, Card, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
+import { Box, Button, Card, FormControl, FormErrorMessage, FormLabel, Input, Textarea } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
@@ -95,7 +95,7 @@ const AddClass = () => {
                     <Box mt={6}>
                         <FormControl isRequired isInvalid={errors.longDes}>
                             <FormLabel>Long Description</FormLabel>
-                            <Input {...register("longDes", { required: 'Long description is required.' })} type="text" placeholder='Long description' borderRadius='none' focusBorderColor="primary.500" autoComplete="longDes" />
+                            <Textarea {...register("longDes", { required: 'Long description is required.' })} type="text" placeholder='Long description' borderRadius='none' focusBorderColor="primary.500" autoComplete="longDes" />
                             <FormErrorMessage>{errors.longDes && errors.longDes?.message}</FormErrorMessage>
                         </FormControl>
                     </Box>
