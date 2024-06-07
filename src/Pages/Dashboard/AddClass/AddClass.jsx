@@ -4,10 +4,12 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const AddClass = () => {
     const {user} = useAuth();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     const {isSuccess, mutate} = useMutation({
         mutationFn: async(classData) => {
@@ -46,6 +48,7 @@ const AddClass = () => {
             showConfirmButton: false,
             timer: 2000
         });
+        navigate('/dashboard/my-class');
     }
 
     return (

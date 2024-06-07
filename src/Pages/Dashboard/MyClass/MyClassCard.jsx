@@ -41,7 +41,7 @@ const MyClassCard = ({ cls, user, handleDeleteClass }) => {
                     },
                 }}
             >
-                <Button flex='1' variant='ghost' leftIcon={<TbListDetails />} isDisabled={status !== 'Accepted' && true}>
+                <Button as={Link} to={`/dashboard/my-class/${_id}`} flex='1' variant='ghost' leftIcon={<TbListDetails />} isDisabled={status !== 'Accepted' && true}>
                     Details
                 </Button>
                 <Button as={Link} to={`/dashboard/update-class/${_id}`} flex='1' variant='ghost' leftIcon={<EditIcon />}>

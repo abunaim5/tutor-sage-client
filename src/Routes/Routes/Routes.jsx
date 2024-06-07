@@ -16,6 +16,8 @@ import AddClass from "../../Pages/Dashboard/AddClass/AddClass";
 import UpdateClass from "../../Pages/Dashboard/UpdateClass/UpdateClass";
 import Payment from "../../Pages/Payment/Payment";
 import MyEnrollClass from "../../Pages/Dashboard/MyEnrollClass/MyEnrollClass";
+import MyEnrollClassDetails from "../../Pages/Dashboard/MyEnrollClassDetails/MyEnrollClassDetails";
+import MyClassDetails from "../../Pages/Dashboard/MyClassDetails/MyClassDetails";
 
 
 const router = createBrowserRouter([
@@ -86,11 +88,19 @@ const router = createBrowserRouter([
           path: '/dashboard/my-class',
           element: <MyClass />
         },
+        {
+          path: '/dashboard/my-class/:id',
+          element: <MyClassDetails />
+        },
 
         // students related routes
         {
           path: '/dashboard/my-enroll-class',
           element: <MyEnrollClass />
+        },
+        {
+          path: '/dashboard/my-enroll-class/:id',
+          element: <MyEnrollClassDetails />
         }
       ]
     }

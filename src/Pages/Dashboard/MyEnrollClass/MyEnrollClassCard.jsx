@@ -1,7 +1,8 @@
 import { Button, Card, CardBody, CardFooter, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const MyEnrollClassCard = ({ enrollClass }) => {
-    const { title, posted_by, email, image_url, } = enrollClass;
+    const { _id, title, posted_by, email, image_url, } = enrollClass;
 
     return (
         <Card
@@ -19,14 +20,14 @@ const MyEnrollClassCard = ({ enrollClass }) => {
 
             <Stack>
                 <CardBody>
-                    <Heading size='md'>{title}</Heading>
-                    <Text py='2'>{posted_by}</Text>
-                    <Text>{email}</Text>
+                    <Heading size='md' fontFamily='body'>{title}</Heading>
+                    <Text fontWeight={500} py='2'>{posted_by}</Text>
+                    <Text fontWeight={500}>{email}</Text>
                     
                 </CardBody>
 
                 <CardFooter>
-                    <Button borderRadius='none' colorScheme='primary'>
+                    <Button as={Link} to={`/dashboard/my-enroll-class/${_id}`} borderRadius='none' colorScheme='primary'>
                         Continue
                     </Button>
                 </CardFooter>
