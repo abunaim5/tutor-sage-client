@@ -7,8 +7,8 @@ import { NavLink, Outlet } from "react-router-dom";
 const Dashboard = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [isTeacher, setIsTeacher] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(true);
+    const [isTeacher, setIsTeacher] = useState(false);
     // const { user } = useAuth();
 
 

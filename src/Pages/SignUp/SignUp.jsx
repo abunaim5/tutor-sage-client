@@ -37,7 +37,8 @@ const SignUp = () => {
                         const userInfo = {
                             name: name,
                             email: email,
-                            photo: photo
+                            photo: photo,
+                            role: 'Student'
                         }
                         mutate(userInfo);
                         Swal.fire({
@@ -70,7 +71,8 @@ const SignUp = () => {
                 const userInfo = {
                     name: res?.user?.displayName,
                     email: res?.user?.email,
-                    photo: res?.user?.photoURL
+                    photo: res?.user?.photoURL,
+                    role: 'Student'
                 }
                 mutate(userInfo);
                 Swal.fire({

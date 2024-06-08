@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const NavBar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const { user, loading, logOutUser } = useAuth();
+    const { user, logOutUser } = useAuth();
 
     const handleLogOutUser = () => {
         logOutUser()
@@ -22,9 +22,9 @@ const NavBar = () => {
             })
     }
 
-    if (loading) {
-        return;
-    }
+    // if (loading) {
+    //     return;
+    // }
 
     return (
         <Box p={7} w='full'>

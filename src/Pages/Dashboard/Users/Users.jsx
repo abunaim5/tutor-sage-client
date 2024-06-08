@@ -53,7 +53,7 @@ const Users = () => {
 
 
     const handleMakeAdmin = async (user, role) => {
-        const res = await axiosSecure.patch(`/users/admin/${user?._id}`, {role});
+        const res = await axiosSecure.patch(`/users/admin/${user?._id}`, { role });
         if (res.data.modifiedCount > 0) {
             Swal.fire({
                 position: "top-end",

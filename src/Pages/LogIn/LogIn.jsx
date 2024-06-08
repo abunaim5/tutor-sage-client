@@ -61,7 +61,8 @@ const LogIn = () => {
                 const userInfo = {
                     name: res.user.displayName,
                     email: res.user.email,
-                    photo: res.user.photoURL
+                    photo: res.user.photoURL,
+                    role: 'Student'
                 }
                 mutate(userInfo);
                 console.log(res.user)
