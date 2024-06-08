@@ -1,15 +1,18 @@
 import { Box, Button, Divider, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, useDisclosure } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 // import useAuth from "../Hooks/useAuth";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
+import useTeacher from "../Hooks/useTeacher";
 
 const Dashboard = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
-    const [isAdmin, setIsAdmin] = useState(true);
-    const [isTeacher, setIsTeacher] = useState(false);
-    // const { user } = useAuth();
+
+    const [isAdmin] = useAdmin();
+    const [isTeacher] = useTeacher();
+
 
 
     return (

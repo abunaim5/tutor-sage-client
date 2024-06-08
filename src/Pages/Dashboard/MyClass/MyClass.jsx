@@ -10,7 +10,8 @@ const MyClass = () => {
     const { user, loading } = useAuth();
 
     const { isPending, data: myClasses = [], refetch } = useQuery({
-        queryKey: ['myClasses'],
+        enabled: !loading,
+        queryKey: ['myClasses', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/myClasses/${user?.email}`);
             return res.data;
@@ -42,10 +43,6 @@ const MyClass = () => {
     }
 
     if (isPending) {
-        return;
-    }
-
-    if (loading) {
         return;
     }
 
