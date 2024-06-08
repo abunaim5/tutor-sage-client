@@ -18,92 +18,94 @@ import Payment from "../../Pages/Payment/Payment";
 import MyEnrollClass from "../../Pages/Dashboard/MyEnrollClass/MyEnrollClass";
 import MyEnrollClassDetails from "../../Pages/Dashboard/MyEnrollClassDetails/MyEnrollClassDetails";
 import MyClassDetails from "../../Pages/Dashboard/MyClassDetails/MyClassDetails";
+import AdminRoute from "../PrivateRoute/AdminRoute";
+import TeacherRoute from "../PrivateRoute/TeacherRoute";
 
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main />,
+  {
+    path: "/",
+    element: <Main />,
     //   errorElement: <ErrorPage />,
-      children: [
-        {
-          index: true,
-          element: <Home />
-        },
-        {
-          path: '/register',
-          element: <SignUp />
-        },
-        {
-          path: '/login',
-          element: <LogIn />
-        },
-        {
-          path: '/classes',
-          element: <AllClasses />
-        },
-        {
-          path: '/class-details/:id',
-          element: <PrivateRoute><ClassDetails /></PrivateRoute>
-        },
-        {
-          path: '/become-a-tutor',
-          element: <PrivateRoute><BecomeATutor /></PrivateRoute>
-        },
-        {
-          path: '/payment/:id',
-          element: <Payment />
-        }
-      ],
-    },
-    {
-      path: '/dashboard',
-      element: <Dashboard />,
-      // errorElement: <ErrorPage />,
-      children: [
-        // admin related routes
-        {
-          path: '/dashboard/teacher-requests',
-          element: <TeacherRequest />
-        },
-        {
-          path: '/dashboard/users',
-          element: <Users />
-        },
-        {
-          path: '/dashboard/class-requests',
-          element: <ClassRequests />
-        },
+    children: [
+      {
+        index: true,
+        element: <Home />
+      },
+      {
+        path: '/register',
+        element: <SignUp />
+      },
+      {
+        path: '/login',
+        element: <LogIn />
+      },
+      {
+        path: '/classes',
+        element: <AllClasses />
+      },
+      {
+        path: '/class-details/:id',
+        element: <PrivateRoute><ClassDetails /></PrivateRoute>
+      },
+      {
+        path: '/become-a-tutor',
+        element: <PrivateRoute><BecomeATutor /></PrivateRoute>
+      },
+      {
+        path: '/payment/:id',
+        element: <PrivateRoute><Payment /></PrivateRoute>
+      }
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute><Dashboard /></PrivateRoute>,
+    // errorElement: <ErrorPage />,
+    children: [
+      // admin related routes
+      {
+        path: '/dashboard/teacher-requests',
+        element: <AdminRoute><TeacherRequest /></AdminRoute>
+      },
+      {
+        path: '/dashboard/users',
+        element: <AdminRoute><Users /></AdminRoute>
+      },
+      {
+        path: '/dashboard/class-requests',
+        element: <AdminRoute><ClassRequests /></AdminRoute>
+      },
 
-        // teachers related routes
-        {
-          path: '/dashboard/add-class',
-          element: <AddClass />
-        },
-        {
-          path: '/dashboard/update-class/:id',
-          element: <UpdateClass />
-        },
-        {
-          path: '/dashboard/my-class',
-          element: <MyClass />
-        },
-        {
-          path: '/dashboard/my-class/:id',
-          element: <MyClassDetails />
-        },
+      // teachers related routes
+      {
+        path: '/dashboard/add-class',
+        element: <TeacherRoute><AddClass /></TeacherRoute>
+      },
+      {
+        path: '/dashboard/update-class/:id',
+        element: <TeacherRoute><UpdateClass /></TeacherRoute>
+      },
+      {
+        path: '/dashboard/my-class',
+        element: <TeacherRoute><MyClass /></TeacherRoute>
+      },
+      {
+        path: '/dashboard/my-class/:id',
+        element: <TeacherRoute><MyClassDetails /></TeacherRoute>
+      },
 
-        // students related routes
-        {
-          path: '/dashboard/my-enroll-class',
-          element: <MyEnrollClass />
-        },
-        {
-          path: '/dashboard/my-enroll-class/:id',
-          element: <MyEnrollClassDetails />
-        }
-      ]
-    }
-  ]);
+      // students related routes
+      {
+        path: '/dashboard/my-enroll-class',
+        element: <MyEnrollClass />
+      },
+      {
+        path: '/dashboard/my-enroll-class/:id',
+        element: <MyEnrollClassDetails />
+      }
+    ]
+  }
+]);
 
-  export default router;
+export default router;

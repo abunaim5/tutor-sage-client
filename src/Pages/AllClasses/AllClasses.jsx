@@ -1,26 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Box } from "@chakra-ui/react";
 import ClassCard from "../../Components/ClassCard/ClassCard";
+import useClasses from "../../Hooks/useClasses";
 
 const AllClasses = () => {
-    const axiosPublic = useAxiosPublic();
+    const [classes, isClassesLoading] = useClasses();
 
-    const { isLoading, data: classes = [] } = useQuery({
-        queryKey: ['classes'],
-        queryFn: async () => {
-            const res = await axiosPublic.get('/classes');
-            return res.data;
-        }
-    });
-
-    if (isLoading) {
+    if (isClassesLoading) {
         return;
     }
 
     return (
         <Box maxW='8xl' mx='auto' my={20} px={7}>
-            <Box display='grid' gridTemplateColumns='repeat(3, 1fr)' gap={6}>
+            <Box gap={6} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {
                     classes.map(cls => <ClassCard key={cls._id} cls={cls} />)
                 }
