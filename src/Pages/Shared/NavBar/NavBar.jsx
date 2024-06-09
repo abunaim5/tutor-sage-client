@@ -49,7 +49,7 @@ const NavBar = () => {
                                 <MenuButton onMouseEnter={onOpen} transition='all 0.001s'>Pages</MenuButton>
                                 <Portal>
                                     <MenuList onMouseLeave={onClose} mt={8} borderRadius='none'>
-                                        <MenuItem as={NavLink} to='/become-a-tutor'>Teach on TutorSage</MenuItem>
+                                        <MenuItem as={NavLink} to='/become-an-instructor'>Teach on TutorSage</MenuItem>
                                         <MenuItem>Events</MenuItem>
                                     </MenuList>
                                 </Portal>

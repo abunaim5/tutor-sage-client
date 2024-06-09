@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute><ClassDetails /></PrivateRoute>
       },
       {
-        path: '/become-a-tutor',
+        path: '/become-an-instructor',
         element: <PrivateRoute><BecomeATutor /></PrivateRoute>
       },
       {

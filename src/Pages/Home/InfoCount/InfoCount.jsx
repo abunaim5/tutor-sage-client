@@ -28,8 +28,8 @@ const InfoCount = () => {
     }
 
     return (
-        <Box display='flex'>
-            <Box w='50%' bg='primary.500' display='flex' alignItems='center' justifyContent='space-between' px={10} textColor='white'>
+        <Box className="flex flex-col lg:flex-row">
+            <Box className="flex-1 flex flex-col lg:flex-row gap-4 items-center justify-between" bg='primary.500' p={10} textColor='white'>
                 <Box textAlign='center'>
                     <Icon as={PiUsersThree} fontSize='4xl' />
                     <Heading size='lg' fontFamily='body' my={3}>Users</Heading>
@@ -46,7 +46,7 @@ const InfoCount = () => {
                     <Text fontSize='2xl'>{totalEnrollments}</Text>
                 </Box>
             </Box>
-            <Box w='50%'>
+            <Box className="flex-1">
                 <Image src={img} />
             </Box>
         </Box>
