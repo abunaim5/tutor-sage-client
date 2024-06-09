@@ -1,7 +1,8 @@
-import { Avatar, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, ButtonGroup, Flex, Heading, Menu, MenuButton, MenuGroup, MenuItem, MenuList, Portal, Spacer, useDisclosure } from "@chakra-ui/react";
+import { Avatar, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, ButtonGroup, Flex, Heading, IconButton, Menu, MenuButton, MenuGroup, MenuItem, MenuList, Portal, Show, Spacer, useDisclosure } from "@chakra-ui/react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 const NavBar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,41 +26,67 @@ const NavBar = () => {
     return (
         <Box p={7} w='full'>
             <Flex maxW='8xl' mx='auto' alignItems='center' gap='2'>
-                <Box>
+                <Box display='flex' alignItems='center' gap={4}>
+                    <Show below="md">
+                        <Menu>
+                            <MenuButton
+                                borderRadius='none'
+                                as={IconButton}
+                                aria-label='Options'
+                                icon={<HamburgerIcon />}
+                                variant='outline'
+                            />
+                            <MenuList borderRadius='none' mt={5}>
+                                <MenuItem as={Link} to='/'>
+                                    Home
+                                </MenuItem>
+                                <MenuItem as={Link} to='/classes'>
+                                    Classes
+                                </MenuItem>
+                                <MenuItem as={Link} to='/become-an-instructor'>
+                                    Teach on TutorSage
+                                </MenuItem>
+                                <MenuItem>
+                                    About Us
+                                </MenuItem>
+                                <MenuItem>
+                                    Blog
+                                </MenuItem>
+                            </MenuList>
+                        </Menu>
+                    </Show>
                     <Heading size='lg' as={Link} to='/' textColor='#252525' fontFamily='logo.croissant' >TutorSa<span className="text-[#FF1949]">g</span>e</Heading>
                 </Box>
                 <Spacer />
-                <Box>
-                    <Breadcrumb separator=''>
-                        <BreadcrumbItem _hover={{ color: '#FF1949' }}>
-                            <BreadcrumbLink as={NavLink} to='/' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Home</BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <BreadcrumbItem _hover={{ color: '#FF1949' }} mx={5}>
-                            <BreadcrumbLink as={NavLink} to='/classes' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Classes</BreadcrumbLink>
-                        </BreadcrumbItem>
-                        {/* <BreadcrumbItem _hover={{ color: '#FF1949' }}>
-                            <BreadcrumbLink as={NavLink} to='/p' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Teach on TutorSage</BreadcrumbLink>
-                        </BreadcrumbItem> */}
-                        <BreadcrumbItem _hover={{ color: '#FF1949' }}>
-                            <Menu isOpen={isOpen} isLazy placement="auto">
-                                <MenuButton onMouseEnter={onOpen} transition='all 0.001s'>Pages</MenuButton>
-                                <Portal>
-                                    <MenuList onMouseLeave={onClose} mt={8} borderRadius='none'>
-                                        <MenuItem as={NavLink} to='/become-an-instructor'>Teach on TutorSage</MenuItem>
-                                        <MenuItem>Events</MenuItem>
-                                    </MenuList>
-                                </Portal>
-                            </Menu>
-                            {/* <BreadcrumbLink as={NavLink} to='/p' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Teach on TutorSage</BreadcrumbLink> */}
-                        </BreadcrumbItem>
-                        <BreadcrumbItem _hover={{ color: '#FF1949' }} mx={5}>
-                            <BreadcrumbLink as={NavLink} to='/a' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>About Us</BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <BreadcrumbItem _hover={{ color: '#FF1949' }}>
-                            <BreadcrumbLink as={NavLink} to='/c' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Blogs</BreadcrumbLink>
-                        </BreadcrumbItem>
-                    </Breadcrumb>
-                </Box>
+                <Show above="lg">
+                    <Box>
+                        <Breadcrumb separator=''>
+                            <BreadcrumbItem _hover={{ color: '#FF1949' }}>
+                                <BreadcrumbLink as={NavLink} to='/' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Home</BreadcrumbLink>
+                            </BreadcrumbItem>
+                            <BreadcrumbItem _hover={{ color: '#FF1949' }} mx={5}>
+                                <BreadcrumbLink as={NavLink} to='/classes' _activeLink={{ color: '#FF1949', fontWeight: 'semibold' }}>Classes</BreadcrumbLink>
+                            </BreadcrumbItem>
+                            <BreadcrumbItem _hover={{ color: '#FF1949' }}>
+                                <Menu isOpen={isOpen} onClose={onClose} isLazy placement="auto">
+                                    <MenuButton onMouseEnter={onOpen} transition='all 0.001s'>Pages</MenuButton>
+                                    <Portal>
+                                        <MenuList onMouseLeave={onClose} mt={8} borderRadius='none'>
+                                            <MenuItem as={NavLink} to='/become-an-instructor'>Teach on TutorSage</MenuItem>
+                                            <MenuItem>Events</MenuItem>
+                                        </MenuList>
+                                    </Portal>
+                                </Menu>
+                            </BreadcrumbItem>
+                            <BreadcrumbItem _hover={{ color: '#FF1949' }} mx={5}>
+                                <BreadcrumbLink>About Us</BreadcrumbLink>
+                            </BreadcrumbItem>
+                            <BreadcrumbItem _hover={{ color: '#FF1949' }}>
+                                <BreadcrumbLink>Blog</BreadcrumbLink>
+                            </BreadcrumbItem>
+                        </Breadcrumb>
+                    </Box>
+                </Show>
                 <Spacer />
                 <Box display='flex' alignItems='center'>
                     {

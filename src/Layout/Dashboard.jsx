@@ -1,6 +1,5 @@
 import { Box, Button, Divider, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Heading, Icon, Show, Text, useDisclosure } from "@chakra-ui/react";
 import React from "react";
-// import useAuth from "../Hooks/useAuth";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
