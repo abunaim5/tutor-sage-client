@@ -17,13 +17,12 @@ const ClassDetails = () => {
     });
 
     const { isPending, data: feedbacks = [] } = useQuery({
-        queryKey: ['feedbacks'],
+        queryKey: ['classFeedbacks'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/terFeedbacks/${id}`);
+            const res = await axiosPublic.get(`/feedbacks/${id}`);
             return res.data;
         }
     });
-    console.log(feedbacks);
 
     const { _id, title, posted_by, short_description, long_description, price, image_url } = cls;
 
@@ -42,7 +41,7 @@ const ClassDetails = () => {
                     <Avatar size='xl' name='Christian Nwamba' src='https://bit.ly/code-beast' />
                     <Box>
                         <Text fontSize='2xl' mt={4}>{posted_by}</Text>
-                        <Text>{short_description}</Text>
+                        <Text fontWeight={500}>{short_description}</Text>
                     </Box>
                 </Box>
                 <Box>

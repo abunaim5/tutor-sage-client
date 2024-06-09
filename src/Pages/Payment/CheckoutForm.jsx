@@ -5,6 +5,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ cls }) => {
     const [error, setError] = useState('');
@@ -14,6 +15,7 @@ const CheckoutForm = ({ cls }) => {
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
+    const navigate = useNavigate();
 
     const { mutate } = useMutation({
         mutationFn: async (enrollClassInfo) => {
@@ -94,6 +96,7 @@ const CheckoutForm = ({ cls }) => {
                 mutate(enrollClassInfo);
                 const res = await axiosSecure.patch(`/enrollClasses/${cls._id}`, {total_enrolment: parseInt(cls?.total_enrolment) + 1});
                 console.log(res);
+                navigate('/dashboard/my-enroll-class');
             }
         }
 
