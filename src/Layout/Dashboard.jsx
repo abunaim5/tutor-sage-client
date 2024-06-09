@@ -1,70 +1,120 @@
-import { Box, Button, Divider, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Divider, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Heading, Icon, Show, Text, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 // import useAuth from "../Hooks/useAuth";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 import useTeacher from "../Hooks/useTeacher";
+import { MdClass, MdDashboard } from "react-icons/md";
+import { FaBookMedical, FaChalkboardTeacher, FaHome, FaUser, FaUsers } from "react-icons/fa";
+import useAuth from "../Hooks/useAuth";
+import { IoLogOut } from "react-icons/io5";
+import { IoMdHelpCircle, IoMdSettings } from "react-icons/io";
+import Swal from "sweetalert2";
 
 const Dashboard = () => {
+    const { user, logOutUser } = useAuth();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
 
     const [isAdmin] = useAdmin();
     const [isTeacher] = useTeacher();
 
+    const handleLogOutUser = () => {
+        logOutUser()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Sign out successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }).catch(error => {
+                console.error(error);
+            })
+    }
+
+    const navLinks = <>
+        {
+            isAdmin ? <>
+                <Button as={NavLink} to='/dashboard/admin' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={MdDashboard} /> Dashboard</Button>
+
+                <Button as={NavLink} to='/dashboard/profile' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}><Icon as={FaUser} />Profile</Button>
+
+                <Button as={NavLink} to='/dashboard/users' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={FaUsers} />Users</Button>
+
+                <Button as={NavLink} to='/dashboard/class-requests' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}><Icon as={MdClass} />Classes</Button>
+
+                <Button as={NavLink} to='/dashboard/teacher-requests' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={FaChalkboardTeacher} />Teacher Request</Button>
+            </> : isTeacher ? <>
+                <Button as={NavLink} to='/dashboard/teacher' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={MdDashboard} />Dashboard</Button>
+
+                <Button as={NavLink} to='/dashboard/profile' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}><Icon as={FaUser} />Profile</Button>
+
+                <Button as={NavLink} to='/dashboard/add-class' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={FaBookMedical} />Add Class</Button>
+
+                <Button as={NavLink} to='/dashboard/my-class' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}><Icon as={MdClass} />My Class</Button>
+            </> : <>
+                <Button as={NavLink} to='/dashboard/student' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={MdDashboard} />Dashboard</Button>
+
+                <Button as={NavLink} to='/dashboard/profile' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}><Icon as={FaUser} />Profile</Button>
+
+                <Button as={NavLink} to='/dashboard/my-enroll-class' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={MdClass} />My Enroll Class</Button>
+            </>
+
+        }
+        <Divider my={4} />
+        <Button as={NavLink} to='/' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} mt={2}><Icon as={FaHome} />Home</Button>
+        <Button as={NavLink} to='/' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}><Icon as={IoMdSettings} />Settings</Button>
+        <Button justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={handleLogOutUser}><Icon as={IoLogOut} />Logout</Button>
+        <Button as={NavLink} to='/' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} mt={20}><Icon as={IoMdHelpCircle} />Help</Button>
+    </>
+
 
 
     return (
-        <Box display='flex' flexDir='column'>
-            <Box display='flex'>
-                <Button colorScheme='primary' ref={btnRef} onClick={onOpen} borderRadius='none' p={8}>
-                    <HamburgerIcon fontSize='4xl' />
-                </Button>
-                <Heading as={Button} textAlign='center' w='100%' py={8} cursor='default' fontFamily='body' borderRadius='none'>{isAdmin ? 'Admin' : isTeacher ? 'Teacher' : 'Student'} Dashboard</Heading>
-            </Box>
+        <Box display='flex' minH='100%'>
             <Drawer
                 isOpen={isOpen}
                 placement='left'
                 onClose={onClose}
                 finalFocusRef={btnRef}
+
             >
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton />
                     <DrawerHeader>Dashboard Menu</DrawerHeader>
 
-                    <DrawerBody maxH='50%'>
-                        {
-                            isAdmin ? <>
-                                <Button as={NavLink} to='/dashboard/admin' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Admin Home</Button>
-                                <Button as={NavLink} to='/dashboard/profile' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Profile</Button>
-                                <Button as={NavLink} to='/dashboard/users' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Users</Button>
-                                <Button as={NavLink} to='/dashboard/class-requests' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Classes</Button>
-                                <Button as={NavLink} to='/dashboard/teacher-requests' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Teacher Requests</Button>
-                            </> : isTeacher ? <>
-                                <Button as={NavLink} to='/dashboard/teacher' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Teacher Home</Button>
-                                <Button as={NavLink} to='/dashboard/profile' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Profile</Button>
-                                <Button as={NavLink} to='/dashboard/add-class' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Add Class</Button>
-                                <Button as={NavLink} to='/dashboard/my-class' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>My Class</Button>
-                            </> : <>
-                                <Button as={NavLink} to='/dashboard/student' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>User Home</Button>
-                                <Button as={NavLink} to='/dashboard/profile' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Profile</Button>
-                                <Button as={NavLink} to='/dashboard/my-enroll-class' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>My Enroll Class</Button>
-                            </>
-                        }
-
+                    <DrawerBody>
+                        {navLinks}
                     </DrawerBody>
-                    <Divider />
-                    <DrawerFooter flexDir='column'>
-                        <Button as={NavLink} to='/' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} mt={2}>Home</Button>
-                        <Button as={NavLink} to='/' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}>Contact</Button>
-                        <Button as={NavLink} to='/' _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}>Blogs</Button>
-                    </DrawerFooter>
                 </DrawerContent>
             </Drawer>
-            <Box w='100%' className="lg:px-24 md:px-4 px-2">
-                <Outlet />
+            <Show above="lg">
+                <Box w='25%' px={6} py={6} shadow='md' minH='100%'>
+                    <Heading size='lg' as={Link} to='/' textColor='#252525' fontFamily='logo.croissant' >TutorSa<span className="text-[#FF1949]">g</span>e</Heading>
+                    <Box mt={20}>
+                        {navLinks}
+                    </Box>
+                </Box>
+            </Show>
+            <Box display='flex' flexDir='column' gap={6} className="w-full lg:w-[75%]">
+                <Box shadow='sm' p={6} display='flex' alignItems='center' gap={6}>
+                    <Show below="md">
+                        <Button colorScheme='primary' ref={btnRef} onClick={onOpen} borderRadius='none' p={7}>
+                            <HamburgerIcon fontSize='2xl' />
+                        </Button>
+                    </Show>
+                    <Box>
+                        <Heading fontFamily='body' fontSize='3xl' fontWeight={600}>Dashboard</Heading>
+                        <Text fontWeight={600} mt={1}>Welcome!, {user?.displayName}</Text>
+                    </Box>
+                </Box>
+                <Box w='100%' px={6}>
+                    <Outlet />
+                </Box>
             </Box>
         </Box>
     );

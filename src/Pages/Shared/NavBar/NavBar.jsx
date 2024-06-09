@@ -22,10 +22,6 @@ const NavBar = () => {
             })
     }
 
-    // if (loading) {
-    //     return;
-    // }
-
     return (
         <Box p={7} w='full'>
             <Flex maxW='8xl' mx='auto' alignItems='center' gap='2'>

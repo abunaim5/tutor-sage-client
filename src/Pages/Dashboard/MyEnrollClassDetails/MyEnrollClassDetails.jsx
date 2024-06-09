@@ -121,7 +121,7 @@ const MyEnrollClassDetails = () => {
     }
 
     return (
-        <Box my={10}>
+        <Box>
             <Box>
                 <Button onClick={onOpen} colorScheme='green' borderRadius='none' px={8} py={6} fontSize='xl'><Icon as={MdOutlineFeedback} mr={2} fontSize='2xl' />TER</Button>
                 <Modal

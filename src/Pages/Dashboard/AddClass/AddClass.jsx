@@ -52,7 +52,7 @@ const AddClass = () => {
     }
 
     return (
-        <Box mt={10}>
+        <Box>
             <Card mx='auto' p={6} rounded='none'>
                 {/* <Heading fontFamily='body' mb={10} textAlign='center'>Add Your Class</Heading> */}
                 <form onSubmit={handleSubmit(onSubmit)}>

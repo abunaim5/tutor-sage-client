@@ -124,7 +124,7 @@ const Users = () => {
     }
 
     return (
-        <Box mt={10}>
+        <Box>
             <Card style={{ height: '100%' }} pt={2} borderRadius='none'>
                 <DataTable
                     title={`Users (${users.length})`}

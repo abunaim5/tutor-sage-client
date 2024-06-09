@@ -105,7 +105,7 @@ const ClassRequests = () => {
     }
 
     return (
-        <Box mt={10} mr={2}>
+        <Box>
             <Card style={{ height: '100%' }} pt={2} borderRadius='none'>
                 <DataTable
                     title={`Class Requests (${classRequests.length})`}
