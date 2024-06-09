@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const BecomeInstructor = () => {
     return (
         <Box className="flex flex-col lg:flex-row">
-            <Box className="flex-1">
+            <Box className="w-full lg:w-1/2">
                 <Image h='100%' src={instructor} alt='instructor image' />
             </Box>
-            <Box className="flex-1" bg='primary.500' display='flex' alignItems='center'>
+            <Box className="w-full lg:w-1/2" bg='primary.500' display='flex' alignItems='center'>
                 <Box textColor='white' p={10}>
                     <Heading fontFamily='body'>Become an instructor</Heading>
                     <Text mt={3}>Inspire and educate the next generation by becoming an instructor. <br /> Create impactful courses and reach a global audience.</Text>

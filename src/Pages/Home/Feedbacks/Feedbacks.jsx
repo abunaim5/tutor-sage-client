@@ -15,7 +15,6 @@ const Feedbacks = () => {
             return res.data;
         }
     });
-    console.log(feedbacks);
 
     if (isLoading) {
         return;
@@ -23,8 +22,9 @@ const Feedbacks = () => {
 
     return (
         <Box maxW='8xl' mx='auto' my={20} px={7}>
-            <Heading fontFamily='body'>Feedbacks</Heading>
-            <Box h={1} bg='primary.500' w={14} mt={6} mb={16} />
+            <Heading fontFamily='body'>Student Feedback</Heading>
+            <Box h={1} bg='primary.500' w={14} mt={6} mb={4} />
+            <Text mb={16} maxW='4xl'>Hear from our students about their learning experiences! Our feedback section features authentic testimonials and ratings from learners who have completed various courses.</Text>
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
@@ -40,7 +40,7 @@ const Feedbacks = () => {
             >
                 {
                     feedbacks.map(feedback => <SwiperSlide key={feedback._id}>
-                        <Box w='100%' h='xs'>
+                        <Box w='100%' my={5}>
                             <Avatar size='xl' name={feedback.user_name} src={feedback.user_photo} />
                             <Text fontWeight={600} fontSize='3xl' my={2}>{feedback.user_name}</Text>
                             <Text fontWeight={600} fontSize='xl'>{feedback.title}</Text>

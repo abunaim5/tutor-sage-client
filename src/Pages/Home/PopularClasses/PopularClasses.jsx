@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -20,14 +20,15 @@ const PopularClasses = () => {
     }
   });
 
-  if(isLoading){
+  if (isLoading) {
     return;
   }
 
   return (
     <Box maxW='8xl' mx='auto' my={20} px={7}>
       <Heading fontFamily='body'>Popular Classes</Heading>
-      <Box h={1} bg='primary.500' w={14} mt={6} mb={16} />
+      <Box h={1} bg='primary.500' w={14} mt={6} mb={4} />
+      <Text mb={16} maxW='4xl'>Explore our most popular classes, curated to provide exceptional learning experiences. These courses have been highly rated by students for their engaging content and expert instruction.</Text>
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -57,7 +58,9 @@ const PopularClasses = () => {
       >
         {
           classes.map(cls => <SwiperSlide key={cls._id}>
-            <ClassCard cls={cls} />
+            <Box my={5}>
+              <ClassCard cls={cls} />
+            </Box>
           </SwiperSlide>)
         }
       </Swiper>

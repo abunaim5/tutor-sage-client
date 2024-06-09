@@ -3,13 +3,15 @@ import { RiAttachmentLine } from "react-icons/ri";
 import { FaRegStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const ClassCard = ({cls}) => {
-    const {_id, title, posted_by, image_url, price, short_description, total_enrolment} = cls;
+const ClassCard = ({ cls }) => {
+    const { _id, title, posted_by, image_url, price, short_description, total_enrolment } = cls;
 
     return (
-        <Card borderRadius='none' shadow='none'>
+        <Card borderRadius='none' shadow='none' >
             <CardBody p={0}>
                 <Image
+                    h='252px'
+                    w='100%'
                     src={image_url}
                     alt={`image of ${title}`}
                     borderRadius='none'
@@ -17,7 +19,7 @@ const ClassCard = ({cls}) => {
                 <Stack mt='6' spacing='3'>
                     <Heading size='md' fontFamily='body'>{title}</Heading>
                     <Text>{posted_by}</Text>
-                    <Text fontSize='sm'>
+                    <Text fontSize='sm' h='50px'>
                         {short_description}
                     </Text>
                     <Box display='flex' alignItems='center' justifyContent='space-between' mb={5}>

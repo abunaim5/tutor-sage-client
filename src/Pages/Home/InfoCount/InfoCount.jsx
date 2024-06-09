@@ -1,5 +1,5 @@
 import { Box, Heading, Icon, Image, Text } from "@chakra-ui/react";
-import img from '../../../assets/images/banner2.png'
+import students from '../../../assets/images/students.png'
 import { PiUsersThree } from "react-icons/pi";
 import { MdOutlineClass } from "react-icons/md";
 import { RiAttachmentLine } from "react-icons/ri";
@@ -19,7 +19,6 @@ const InfoCount = () => {
             return res.data;
         }
     });
-    console.log(totalUsers);
 
     const totalEnrollments = classes.reduce((total, cls) => total + parseInt(cls.total_enrolment), 0);
 
@@ -28,8 +27,8 @@ const InfoCount = () => {
     }
 
     return (
-        <Box className="flex flex-col lg:flex-row">
-            <Box className="flex-1 flex flex-col lg:flex-row gap-4 items-center justify-between" bg='primary.500' p={10} textColor='white'>
+        <Box className="flex flex-col-reverse lg:flex-row">
+            <Box className="w-full lg:w-1/2 flex flex-col lg:flex-row gap-4 items-center justify-between" bg='primary.500' p={10} textColor='white'>
                 <Box textAlign='center'>
                     <Icon as={PiUsersThree} fontSize='4xl' />
                     <Heading size='lg' fontFamily='body' my={3}>Users</Heading>
@@ -46,8 +45,8 @@ const InfoCount = () => {
                     <Text fontSize='2xl'>{totalEnrollments}</Text>
                 </Box>
             </Box>
-            <Box className="flex-1">
-                <Image src={img} />
+            <Box className="w-full lg:w-1/2">
+                <Image src={students} />
             </Box>
         </Box>
     );

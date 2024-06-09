@@ -4,15 +4,17 @@ import PopularClasses from "../PopularClasses/PopularClasses";
 import InfoCount from "../InfoCount/InfoCount";
 import Feedbacks from "../Feedbacks/Feedbacks";
 import BecomeInstructor from "../BecomeInstructor/BecomeInstructor";
+import Partners from "./Partners/Partners";
 
 const Home = () => {
     return (
         <Box>
             <Banner />
             <PopularClasses />
-            <BecomeInstructor />
             <Feedbacks />
+            <BecomeInstructor />
             <InfoCount />
+            <Partners />
         </Box>
     );
 };
