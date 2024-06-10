@@ -9,7 +9,7 @@ const Footer = () => {
 
     return (
         <Box bg='#252525'>
-            <Box maxW='8xl' mx='auto' textColor='white' py={20} display='grid' gridTemplateColumns='repeat(4, 1fr)' gap={6} px={7}>
+            <Box maxW='8xl' mx='auto' textColor='white' py={20} px={7} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <Box>
                     <Box>
                         <Heading size='lg' as={Link} to='/' fontFamily='logo.croissant' >TutorSa<span className="text-[#FF1949]">g</span>e</Heading>
@@ -25,16 +25,6 @@ const Footer = () => {
                     </Box>
                 </Box>
                 <Box>
-                    <Heading size='md'>Support</Heading>
-                    <Box display='flex' flexDir='column' gap={2} mt={6}>
-                        <Link to='/about'>About Us</Link>
-                        <Link to='/about'>Registration</Link>
-                        <Link to='/about'>Available Courses</Link>
-                        <Link to='/about'>Become A Tutor</Link>
-                        <Link to='/about'>Events</Link>
-                    </Box>
-                </Box>
-                <Box>
                     <Heading size='md'>Popular Courses</Heading>
                     <Box display='flex' flexDir='column' gap={2} mt={6}>
                         <Link to='/'>Introduction to Programming</Link>
@@ -42,6 +32,16 @@ const Footer = () => {
                         <Link to='/'>Data Science and Analytics</Link>
                         <Link to='/'>Business Communication</Link>
                         <Link to='/'>Digital Marketing</Link>
+                    </Box>
+                </Box>
+                <Box>
+                    <Heading size='md'>Support</Heading>
+                    <Box display='flex' flexDir='column' gap={2} mt={6}>
+                        <Link to='/about'>About Us</Link>
+                        <Link to='/about'>Registration</Link>
+                        <Link to='/about'>Available Courses</Link>
+                        <Link to='/about'>Become A Tutor</Link>
+                        <Link to='/about'>Events</Link>
                     </Box>
                 </Box>
                 <Box>
@@ -56,9 +56,9 @@ const Footer = () => {
                 </Box>
             </Box>
             <Box textColor='white' bg='#1D1D1D' py={10}>
-                <Box maxW='8xl' mx='auto' display='flex' justifyContent='space-between'>
+                <Box maxW='8xl' mx='auto' px={7} className="flex justify-between flex-col-reverse md:flex-row gap-4">
                     <Text>&copy; {currentYear} TutorSage. All Rights Reserved.</Text>
-                    <Box display='flex' gap={6} textColor='lightgrey'>
+                    <Box textColor='lightgrey' className="flex gap-4">
                         <Text>Call: (123) 456-7890</Text>
                         <Text>Follow Us
                             <Link><Icon ml={2} as={FaLinkedinIn} /></Link>

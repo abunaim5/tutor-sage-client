@@ -95,7 +95,7 @@ const NavBar = () => {
                                 <MenuButton as={Avatar} src={user?.photoURL} cursor='pointer' />
                                 <MenuList borderRadius='none' mt={5}>
                                     <MenuGroup title={user?.displayName || 'Unknown User'}>
-                                        <MenuItem>My Account</MenuItem>
+                                        <MenuItem>Profile</MenuItem>
                                         <MenuItem as={Link} to='/dashboard'>Dashboard</MenuItem>
                                         <MenuItem textColor='primary.500' onClick={handleLogOutUser}>Logout</MenuItem>
                                     </MenuGroup>
