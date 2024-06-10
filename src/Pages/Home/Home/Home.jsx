@@ -6,6 +6,7 @@ import Feedbacks from "../Feedbacks/Feedbacks";
 import BecomeInstructor from "../BecomeInstructor/BecomeInstructor";
 import Partners from "./Partners/Partners";
 import MeetProfessionals from "../MeetProfessionals/MeetProfessionals";
+import FAQuestion from "../FAQuestion/FAQuestion";
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             <MeetProfessionals />
             <InfoCount />
             <Partners />
+            <FAQuestion />
         </Box>
     );
 };

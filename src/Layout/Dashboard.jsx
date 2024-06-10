@@ -76,7 +76,7 @@ const Dashboard = () => {
 
 
     return (
-        <Box display='flex' minH='100%'>
+        <Box display='flex' minH='100vh'>
             <Drawer
                 isOpen={isOpen}
                 placement='left'
@@ -95,7 +95,7 @@ const Dashboard = () => {
                 </DrawerContent>
             </Drawer>
             <Show above="lg">
-                <Box w='25%' px={6} py={6} shadow='md' minH='100%'>
+                <Box w='25%' px={6} py={6} minH='100%'>
                     <Heading size='lg' as={Link} to='/' textColor='#252525' fontFamily='logo.croissant' >TutorSa<span className="text-[#FF1949]">g</span>e</Heading>
                     <Box mt={20}>
                         {navLinks}
@@ -103,7 +103,7 @@ const Dashboard = () => {
                 </Box>
             </Show>
             <Box display='flex' flexDir='column' gap={6} className="w-full lg:w-[75%]">
-                <Box shadow='sm' p={6} display='flex' alignItems='center' gap={6}>
+                <Box p={6} display='flex' alignItems='center' gap={6}>
                     <Show below="md">
                         <Button colorScheme='primary' ref={btnRef} onClick={onOpen} borderRadius='none' p={7}>
                             <HamburgerIcon fontSize='2xl' />
@@ -114,7 +114,7 @@ const Dashboard = () => {
                         <Text fontWeight={600} mt={1}>Welcome!, {user?.displayName}</Text>
                     </Box>
                 </Box>
-                <Box w='100%' px={6} pb={6}>
+                <Box w='100%' p={6} className="bg-black/5">
                     <Outlet />
                 </Box>
             </Box>

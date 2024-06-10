@@ -28,21 +28,27 @@ const InfoCount = () => {
 
     return (
         <Box className="flex flex-col-reverse lg:flex-row">
-            <Box className="w-full lg:w-1/2 flex flex-col lg:flex-row gap-4 items-center justify-between" bg='primary.500' p={10} textColor='white'>
-                <Box textAlign='center'>
-                    <Icon as={PiUsersThree} fontSize='4xl' />
-                    <Heading size='lg' fontFamily='body' my={3}>Users</Heading>
-                    <Text fontSize='2xl'>{totalUsers?.usersCount}</Text>
+            <Box className="w-full lg:w-1/2 flex flex-wrap  md:flex-row gap-10 md:gap-4 items-center justify-center md:justify-between" bg='primary.500' p={16} textColor='white'>
+                <Box display='flex' alignItems='center' gap={4}>
+                    <Icon as={PiUsersThree} fontSize='5xl' />
+                    <Box>
+                        <Heading size='lg' fontFamily='body' mb={1}>{totalUsers?.usersCount}</Heading>
+                        <Text fontSize='xl'>Users</Text>
+                    </Box>
                 </Box>
-                <Box textAlign='center'>
-                    <Icon as={MdOutlineClass} fontSize='3xl' />
-                    <Heading size='lg' fontFamily='body' my={3}>Classes</Heading>
-                    <Text fontSize='2xl'>{classes?.length}</Text>
+                <Box display='flex' alignItems='center' gap={4}>
+                    <Icon as={MdOutlineClass} fontSize='5xl' />
+                    <Box>
+                        <Heading size='lg' fontFamily='body' mb={1}>{classes?.length}</Heading>
+                        <Text fontSize='xl'>Classes</Text>
+                    </Box>
                 </Box>
-                <Box textAlign='center'>
-                    <Icon as={RiAttachmentLine} fontSize='3xl' />
-                    <Heading size='lg' fontFamily='body' my={3}>Enrollments</Heading>
-                    <Text fontSize='2xl'>{totalEnrollments}</Text>
+                <Box display='flex' alignItems='center' gap={4}>
+                    <Icon as={RiAttachmentLine} fontSize='5xl' />
+                    <Box>
+                        <Heading size='lg' fontFamily='body' mb={1}>{totalEnrollments}</Heading>
+                        <Text fontSize='xl'>Enrollments</Text>
+                    </Box>
                 </Box>
             </Box>
             <Box className="w-full lg:w-1/2">
