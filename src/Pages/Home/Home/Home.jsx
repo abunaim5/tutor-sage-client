@@ -5,6 +5,7 @@ import InfoCount from "../InfoCount/InfoCount";
 import Feedbacks from "../Feedbacks/Feedbacks";
 import BecomeInstructor from "../BecomeInstructor/BecomeInstructor";
 import Partners from "./Partners/Partners";
+import MeetProfessionals from "../MeetProfessionals/MeetProfessionals";
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <PopularClasses />
             <Feedbacks />
             <BecomeInstructor />
+            <MeetProfessionals />
             <InfoCount />
             <Partners />
         </Box>
