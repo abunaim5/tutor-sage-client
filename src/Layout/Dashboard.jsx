@@ -37,37 +37,37 @@ const Dashboard = () => {
     const navLinks = <>
         {
             isAdmin ? <>
-                <Button as={NavLink} to='/dashboard/admin' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={MdDashboard} /> Dashboard</Button>
+                <Button as={NavLink} to='/dashboard/admin' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose}><Icon as={MdDashboard} /> Dashboard</Button>
 
-                <Button as={NavLink} to='/dashboard/profile' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}><Icon as={FaUser} />Profile</Button>
+                <Button as={NavLink} to='/dashboard/profile' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose} my={4}><Icon as={FaUser} />Profile</Button>
 
-                <Button as={NavLink} to='/dashboard/users' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={FaUsers} />Users</Button>
+                <Button as={NavLink} to='/dashboard/users' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose}><Icon as={FaUsers} />Users</Button>
 
-                <Button as={NavLink} to='/dashboard/class-requests' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}><Icon as={MdClass} />Classes</Button>
+                <Button as={NavLink} to='/dashboard/class-requests' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose} my={4}><Icon as={MdClass} />Classes</Button>
 
-                <Button as={NavLink} to='/dashboard/teacher-requests' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={FaChalkboardTeacher} />Teacher Request</Button>
+                <Button as={NavLink} to='/dashboard/teacher-requests' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose}><Icon as={FaChalkboardTeacher} />Teacher Request</Button>
             </> : isTeacher ? <>
-                <Button as={NavLink} to='/dashboard/teacher' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={MdDashboard} />Dashboard</Button>
+                <Button as={NavLink} to='/dashboard/teacher' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose}><Icon as={MdDashboard} />Dashboard</Button>
 
-                <Button as={NavLink} to='/dashboard/profile' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}><Icon as={FaUser} />Profile</Button>
+                <Button as={NavLink} to='/dashboard/profile' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose} my={4}><Icon as={FaUser} />Profile</Button>
 
-                <Button as={NavLink} to='/dashboard/add-class' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={FaBookMedical} />Add Class</Button>
+                <Button as={NavLink} to='/dashboard/add-class' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose}><Icon as={FaBookMedical} />Add Class</Button>
 
-                <Button as={NavLink} to='/dashboard/my-class' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}><Icon as={MdClass} />My Class</Button>
+                <Button as={NavLink} to='/dashboard/my-class' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose} my={4}><Icon as={MdClass} />My Class</Button>
             </> : <>
-                <Button as={NavLink} to='/dashboard/student' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={MdDashboard} />Dashboard</Button>
+                <Button as={NavLink} to='/dashboard/student' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose}><Icon as={MdDashboard} />Dashboard</Button>
 
-                <Button as={NavLink} to='/dashboard/profile' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}><Icon as={FaUser} />Profile</Button>
+                <Button as={NavLink} to='/dashboard/profile' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose} my={4}><Icon as={FaUser} />Profile</Button>
 
-                <Button as={NavLink} to='/dashboard/my-enroll-class' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose}><Icon as={MdClass} />My Enroll Class</Button>
+                <Button as={NavLink} to='/dashboard/my-enroll-class' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose}><Icon as={MdClass} />My Enroll Class</Button>
             </>
 
         }
-        <Divider my={4} />
-        <Button as={NavLink} to='/' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} mt={2}><Icon as={FaHome} />Home</Button>
-        <Button as={NavLink} to='/' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} my={4}><Icon as={IoMdSettings} />Settings</Button>
-        <Button justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={handleLogOutUser}><Icon as={IoLogOut} />Logout</Button>
-        <Button as={NavLink} to='/' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' borderRadius='none' onClick={onClose} mt={20}><Icon as={IoMdHelpCircle} />Help</Button>
+        <Divider mb={4} mt={6} />
+        <Button as={NavLink} to='/' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose} mt={2}><Icon as={FaHome} />Home</Button>
+        <Button as={NavLink} to='/' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose} my={4}><Icon as={IoMdSettings} />Settings</Button>
+        <Button justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={handleLogOutUser}><Icon as={IoLogOut} />Logout</Button>
+        <Button as={NavLink} to='/' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose} mt={20}><Icon as={IoMdHelpCircle} />Help</Button>
     </>
 
 
@@ -111,7 +111,7 @@ const Dashboard = () => {
                         <Text fontWeight={600} mt={1}>Welcome!, {user?.displayName}</Text>
                     </Box>
                 </Box>
-                <Box w='100%' px={6}>
+                <Box w='100%' px={6} pb={6}>
                     <Outlet />
                 </Box>
             </Box>

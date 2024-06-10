@@ -20,6 +20,7 @@ import MyEnrollClassDetails from "../../Pages/Dashboard/MyEnrollClassDetails/MyE
 import MyClassDetails from "../../Pages/Dashboard/MyClassDetails/MyClassDetails";
 import AdminRoute from "../PrivateRoute/AdminRoute";
 import TeacherRoute from "../PrivateRoute/TeacherRoute";
+import AdminProfile from "../../Pages/Dashboard/AdminProfile/AdminProfile";
 
 
 const router = createBrowserRouter([
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
     // errorElement: <ErrorPage />,
     children: [
       // admin related routes
+      {
+        path: '/dashboard/profile',
+        element: <AdminRoute><AdminProfile /></AdminRoute>
+      },
       {
         path: '/dashboard/teacher-requests',
         element: <AdminRoute><TeacherRequest /></AdminRoute>
