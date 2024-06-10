@@ -20,7 +20,7 @@ import MyEnrollClassDetails from "../../Pages/Dashboard/MyEnrollClassDetails/MyE
 import MyClassDetails from "../../Pages/Dashboard/MyClassDetails/MyClassDetails";
 import AdminRoute from "../PrivateRoute/AdminRoute";
 import TeacherRoute from "../PrivateRoute/TeacherRoute";
-import AdminProfile from "../../Pages/Dashboard/AdminProfile/AdminProfile";
+import MyProfile from "../../Pages/Dashboard/MyProfile/MyProfile";
 
 
 const router = createBrowserRouter([
@@ -64,11 +64,12 @@ const router = createBrowserRouter([
     element: <PrivateRoute><Dashboard /></PrivateRoute>,
     // errorElement: <ErrorPage />,
     children: [
-      // admin related routes
       {
         path: '/dashboard/profile',
-        element: <AdminRoute><AdminProfile /></AdminRoute>
+        element: <MyProfile />
       },
+
+      // admin related routes
       {
         path: '/dashboard/teacher-requests',
         element: <AdminRoute><TeacherRequest /></AdminRoute>

@@ -1,20 +1,19 @@
-import { Box } from "@chakra-ui/react";
 import ProfileCard from "../../../Components/ProfileCard/ProfileCard";
 import useUser from "../../../Hooks/useUser";
 
-const AdminProfile = () => {
+const MyProfile = () => {
     const [userInfo, isUserLoading] = useUser();
     console.log(userInfo)
 
-    if(isUserLoading){
+    if (isUserLoading) {
         return;
     }
 
     return (
-        <Box>
+        <>
             <ProfileCard userInfo={userInfo} />
-        </Box>
+        </>
     );
 };
 
-export default AdminProfile;
+export default MyProfile;
