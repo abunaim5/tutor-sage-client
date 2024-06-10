@@ -13,9 +13,9 @@ const PopularClasses = () => {
   const axiosPublic = useAxiosPublic();
 
   const { isLoading, data: classes = [] } = useQuery({
-    queryKey: ['classes'],
+    queryKey: ['popular-classes'],
     queryFn: async () => {
-      const res = await axiosPublic.get('/classes');
+      const res = await axiosPublic.get('/popularClasses');
       return res.data;
     }
   });

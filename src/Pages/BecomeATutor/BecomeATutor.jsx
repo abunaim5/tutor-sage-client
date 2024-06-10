@@ -2,25 +2,17 @@ import { Box, Button, Card, FormControl, FormErrorMessage, FormLabel, Heading, I
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import tutorImg from '../../assets/images/tutor.png'
-import useAuth from "../../Hooks/useAuth";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation,  } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useUser from "../../Hooks/useUser";
 
 const BecomeATutor = () => {
-    const { user } = useAuth();
-    const axiosPublic = useAxiosPublic();
-    const { isLoading, data: userInfo = {} } = useQuery({
-        queryKey: ['user'],
-        queryFn: async () => {
-            const res = await axiosPublic.get(`/users/${user?.email}`);
-            return res.data;
-        }
-    });
-    console.log(userInfo);
+    const axiosSecure = useAxiosSecure();
+    const [userInfo, isUserLoading] = useUser();
 
     const { isSuccess, mutate } = useMutation({
         mutationFn: async (requestData) => {
-            const res = await axiosPublic.post('/teacherRequests', requestData);
+            const res = await axiosSecure.post('/teacherRequests', requestData);
             return res;
         }
     })
@@ -50,7 +42,7 @@ const BecomeATutor = () => {
         });
     }
 
-    if (isLoading) {
+    if (isUserLoading) {
         return;
     }
 
@@ -67,19 +59,19 @@ const BecomeATutor = () => {
                             <Box display='flex' gap={6}>
                                 <FormControl isRequired isInvalid={errors.name}>
                                     <FormLabel>Name</FormLabel>
-                                    <Input {...register("name", { required: 'Name is required.' })} type="text" defaultValue={user?.displayName} placeholder='Name' borderRadius='none' focusBorderColor="primary.500" autoComplete="name" />
+                                    <Input {...register("name", { required: 'Name is required.' })} type="text" defaultValue={userInfo?.name} placeholder='Name' borderRadius='none' focusBorderColor="primary.500" autoComplete="name" />
                                     <FormErrorMessage>{errors.name && errors.name?.message}</FormErrorMessage>
                                 </FormControl>
                                 <FormControl isRequired isInvalid={errors.email}>
                                     <FormLabel>Email</FormLabel>
-                                    <Input {...register("email", { required: 'Email address is required.' })} type="email" defaultValue={user?.email} readOnly placeholder='Email' borderRadius='none' focusBorderColor="primary.500" autoComplete="email" />
+                                    <Input {...register("email", { required: 'Email address is required.' })} type="email" defaultValue={userInfo?.email} readOnly placeholder='Email' borderRadius='none' focusBorderColor="primary.500" autoComplete="email" />
                                     <FormErrorMessage>{errors.email && errors.email?.message}</FormErrorMessage>
                                 </FormControl>
                             </Box>
                             <Box display='flex' gap={6} my={6}>
                                 <FormControl isRequired isInvalid={errors.photo}>
                                     <FormLabel>Your Photo</FormLabel>
-                                    <Input {...register("photo", { required: 'Photo is required.' })} type="text" defaultValue={user?.photoURL} placeholder='https://' borderRadius='none' focusBorderColor="primary.500" autoComplete="photo" />
+                                    <Input {...register("photo", { required: 'Photo is required.' })} type="text" defaultValue={userInfo?.photo} placeholder='https://' borderRadius='none' focusBorderColor="primary.500" autoComplete="photo" />
                                     <FormErrorMessage>{errors.photo && errors.photo?.message}</FormErrorMessage>
                                 </FormControl>
                                 <FormControl isRequired isInvalid={errors.title}>
