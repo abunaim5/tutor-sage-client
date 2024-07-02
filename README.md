@@ -34,7 +34,7 @@ For any issues or questions, feel free to contact our support team at support@tu
 
 Thank you for choosing TutorSage, where education meets innovation!
 
-## 3. Technologies Used
+## Technologies Used
 
 - HTML
 - CSS
@@ -44,7 +44,7 @@ Thank you for choosing TutorSage, where education meets innovation!
 - Express
 - MongoDB
 
-## 4. Steps to Clone and Run the Project Locally
+## Steps to Clone and Run the Project Locally
 
 ### Steps to Run Locally:
 
