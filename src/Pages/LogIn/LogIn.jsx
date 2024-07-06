@@ -1,6 +1,6 @@
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { Box, Button, ButtonGroup, Card, FormControl, FormErrorMessage, FormLabel, Heading, IconButton, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { Box, Button, ButtonGroup, Card, FormControl, FormErrorMessage, FormLabel, Heading, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaFacebookF, FaGoogle, FaTwitter } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useMutation } from "@tanstack/react-query";
+import IconBtn from "../../Components/IconBtn/IconBtn";
 
 const LogIn = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -65,7 +66,6 @@ const LogIn = () => {
                     role: 'Student'
                 }
                 mutate(userInfo);
-                console.log(res.user)
             }).catch(error => {
                 Swal.fire({
                     position: "top-end",
@@ -78,16 +78,33 @@ const LogIn = () => {
             })
     };
 
-    if (isSuccess) {
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Successfully logged in",
-            showConfirmButton: false,
-            timer: 1500
-        });
-        navigate(from, { replace: true });
-    }
+    const loginButtons = [
+        {
+            icon: <FaGoogle />,
+            handleLogin: handleLogInWithGoogle
+        },
+        {
+            icon: <FaTwitter />,
+            handleLogin: null
+        },
+        {
+            icon: <FaFacebookF />,
+            handleLogin: null
+        },
+    ];
+
+    useEffect(() => {
+        if (isSuccess) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Successfully logged in",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            navigate(from, { replace: true });
+        }
+    }, [from, isSuccess, navigate]);
 
     return (
         <Box minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' >
@@ -114,31 +131,9 @@ const LogIn = () => {
                 <Box mt={6}>
                     <Text textAlign='center'>Login with social accounts</Text>
                     <ButtonGroup justifyContent='center' w='100%' mt={3}>
-                        <IconButton
-                            onClick={handleLogInWithGoogle}
-                            isRound
-                            variant='outline'
-                            colorScheme='primary'
-                            aria-label='Call Sage'
-                            fontSize='20px'
-                            icon={<FaGoogle />}
-                        />
-                        <IconButton
-                            isRound
-                            variant='outline'
-                            colorScheme='primary'
-                            aria-label='Call Sage'
-                            fontSize='20px'
-                            icon={<FaTwitter />}
-                        />
-                        <IconButton
-                            isRound
-                            variant='outline'
-                            colorScheme='primary'
-                            aria-label='Call Sage'
-                            fontSize='20px'
-                            icon={<FaFacebookF />}
-                        />
+                        {
+                            loginButtons.map((button, idx) => <IconBtn key={idx} button={button} />)
+                        }
                     </ButtonGroup>
                 </Box>
                 <Text textAlign='center' mt={6}>
