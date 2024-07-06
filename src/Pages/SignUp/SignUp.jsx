@@ -99,17 +99,17 @@ const SignUp = () => {
             <Card minW='lg' p={6} rounded='none'>
                 <Heading textAlign='center' textColor='#252525'>Sign Up</Heading>
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
-                    <FormControl isRequired isInvalid={errors.name}>
+                    <FormControl isInvalid={errors.name}>
                         <FormLabel>Name</FormLabel>
                         <Input {...register("name", { required: 'Name is required.' })} type="text" placeholder='Name' borderRadius='none' focusBorderColor="primary.300" autoComplete="name" />
                         <FormErrorMessage>{errors.name && errors.name?.message}</FormErrorMessage>
                     </FormControl>
-                    <FormControl isRequired my={6} isInvalid={errors.email}>
+                    <FormControl my={6} isInvalid={errors.email}>
                         <FormLabel>Email</FormLabel>
                         <Input {...register("email", { required: 'Email address is required.' })} type="email" placeholder='Email' borderRadius='none' focusBorderColor="primary.300" autoComplete="email" />
                         <FormErrorMessage>{errors.email && errors.email?.message}</FormErrorMessage>
                     </FormControl>
-                    <FormControl isRequired isInvalid={errors.password}>
+                    <FormControl isInvalid={errors.password}>
                         <FormLabel>Password</FormLabel>
                         <InputGroup>
                             <Input {...register("password", { required: 'Password is required.', minLength: { value: 6, message: 'Password should be 6 character or more.' } })} type={showPassword ? 'text' : 'password'} placeholder='Password' borderRadius='none' focusBorderColor="primary.300" autoComplete="pass" />
@@ -119,7 +119,7 @@ const SignUp = () => {
                         </InputGroup>
                         <FormErrorMessage>{errors.password && errors.password?.message}</FormErrorMessage>
                     </FormControl>
-                    <FormControl isRequired mt={6} isInvalid={errors.photo}>
+                    <FormControl mt={6} isInvalid={errors.photo}>
                         <FormLabel>Your Photo</FormLabel>
                         <Input {...register("photo", { required: 'Photo is required.' })} type='text' placeholder='https://' borderRadius='none' focusBorderColor="primary.300" autoComplete="photo" />
                         <FormErrorMessage>{errors.photo && errors.photo?.message}</FormErrorMessage>

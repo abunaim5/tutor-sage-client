@@ -60,7 +60,7 @@ const Dashboard = () => {
 
                 <Button as={NavLink} to='/dashboard/profile' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose} my={4}><Icon as={FaUser} />Profile</Button>
 
-                <Button as={NavLink} to='/dashboard/my-order' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose} mb={4}><Icon as={FaCartFlatbed} />My Order</Button>
+                <Button justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose} mb={4}><Icon as={FaCartFlatbed} />My Order</Button>
 
                 <Button as={NavLink} to='/dashboard/my-enroll-class' justifyContent='left' gap={2} _activeLink={{ bg: 'primary.500', textColor: 'white' }} w='100%' onClick={onClose}><Icon as={MdClass} />My Enroll Class</Button>
             </>

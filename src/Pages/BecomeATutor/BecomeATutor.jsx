@@ -57,31 +57,31 @@ const BecomeATutor = () => {
                         <Heading fontFamily='body' mb={10} textAlign='center'>Fill this form</Heading>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <Box display='flex' gap={6}>
-                                <FormControl isRequired isInvalid={errors.name}>
+                                <FormControl isInvalid={errors.name}>
                                     <FormLabel>Name</FormLabel>
                                     <Input {...register("name", { required: 'Name is required.' })} type="text" defaultValue={userInfo?.name} placeholder='Name' borderRadius='none' focusBorderColor="primary.500" autoComplete="name" />
                                     <FormErrorMessage>{errors.name && errors.name?.message}</FormErrorMessage>
                                 </FormControl>
-                                <FormControl isRequired isInvalid={errors.email}>
+                                <FormControl isInvalid={errors.email}>
                                     <FormLabel>Email</FormLabel>
                                     <Input {...register("email", { required: 'Email address is required.' })} type="email" defaultValue={userInfo?.email} readOnly placeholder='Email' borderRadius='none' focusBorderColor="primary.500" autoComplete="email" />
                                     <FormErrorMessage>{errors.email && errors.email?.message}</FormErrorMessage>
                                 </FormControl>
                             </Box>
                             <Box display='flex' gap={6} my={6}>
-                                <FormControl isRequired isInvalid={errors.photo}>
+                                <FormControl isInvalid={errors.photo}>
                                     <FormLabel>Your Photo</FormLabel>
                                     <Input {...register("photo", { required: 'Photo is required.' })} type="text" defaultValue={userInfo?.photo} placeholder='https://' borderRadius='none' focusBorderColor="primary.500" autoComplete="photo" />
                                     <FormErrorMessage>{errors.photo && errors.photo?.message}</FormErrorMessage>
                                 </FormControl>
-                                <FormControl isRequired isInvalid={errors.title}>
+                                <FormControl isInvalid={errors.title}>
                                     <FormLabel>Title</FormLabel>
                                     <Input {...register("title", { required: 'Title is required.' })} type="text" placeholder='Title' borderRadius='none' focusBorderColor="primary.500" autoComplete="name" />
                                     <FormErrorMessage>{errors.title && errors.title?.message}</FormErrorMessage>
                                 </FormControl>
                             </Box>
                             <Box display='flex' gap={6}>
-                                <FormControl isRequired isInvalid={errors.experience}>
+                                <FormControl isInvalid={errors.experience}>
                                     <FormLabel>Experience</FormLabel>
                                     <Select {...register("experience", { required: 'Experience is required.' })} placeholder='Select experience' borderRadius='none' focusBorderColor="primary.500" autoComplete="experience" sx={{ '> option': { color: 'black' } }}>
                                         <option value='Beginner'>Beginner</option>
@@ -90,7 +90,7 @@ const BecomeATutor = () => {
                                     </Select>
                                     <FormErrorMessage>{errors.experience && errors.experience?.message}</FormErrorMessage>
                                 </FormControl>
-                                <FormControl isRequired isInvalid={errors.category}>
+                                <FormControl isInvalid={errors.category}>
                                     <FormLabel>Category</FormLabel>
                                     <Select {...register("category", { required: 'Category is required.' })} placeholder='Select category' borderRadius='none' focusBorderColor="primary.500" autoComplete="category" sx={{ '> option': { color: 'black' } }}>
                                         <option value='Web development'>Web development</option>
