@@ -6,6 +6,9 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const MyClassDetails = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -47,13 +50,21 @@ const MyClassDetails = () => {
         }
     };
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1500,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
+
     if (isLoading) {
         return;
     }
 
 
     return (
-        <Box my={10}>
+        <Box my={10} data-aos='fade-up'>
             <SimpleGrid spacing={4} templateColumns={{base: 'repeat(auto-fill, minmax(200px, 1fr))', md: 'repeat(auto-fill, minmax(400px, 1fr))'}}>
                 <Card align='center' borderRadius='none' bg='primary.50'>
                     <CardHeader>

@@ -4,6 +4,9 @@ import { Avatar, Box, Card, IconButton } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 
 const columns = [
@@ -114,13 +117,21 @@ const TeacherRequest = () => {
 
     });
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1500,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
+
     if (isLoading) {
         return;
     }
 
     return (
         <Box>
-            <Card style={{ height: '100%' }} pt={2} borderRadius='none'>
+            <Card style={{ height: '100%' }} pt={2} borderRadius='none' data-aos='fade-up'>
                 <DataTable
                     title={`Teacher Requests (${teacherRequests.length})`}
                     columns={columns}

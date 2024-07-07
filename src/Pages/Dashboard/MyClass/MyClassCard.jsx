@@ -4,11 +4,23 @@ import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Head
 // import { BsThreeDotsVertical } from "react-icons/bs";
 import { TbListDetails } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const MyClassCard = ({ cls, user, handleDeleteClass }) => {
     const { _id, posted_by, email, title, image_url, price, short_description, long_description, status } = cls;
+
+    useEffect(() => {
+        AOS.init({
+            duration: 1500,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
+
     return (
-        <Card w='100%'>
+        <Card w='100%' data-aos='fade-up'>
             <CardHeader>
                 <Flex spacing='4'>
                     <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>

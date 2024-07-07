@@ -5,6 +5,9 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useParams } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 
 const UpdateClass = () => {
@@ -46,6 +49,14 @@ const UpdateClass = () => {
         mutate(updatedClassData);
     };
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1500,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
+
     if (updateInfo?.data?.modifiedCount > 0) {
         Swal.fire({
             position: "top-end",
@@ -62,7 +73,7 @@ const UpdateClass = () => {
 
     return (
         <Box mt={10}>
-            <Card mx='auto' p={6} rounded='none'>
+            <Card mx='auto' p={6} rounded='none' data-aos='fade-up'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Box display='flex' flexDir={{base: 'column', md: 'row'}} gap={6}>
                         <FormControl isRequired isInvalid={errors.name}>

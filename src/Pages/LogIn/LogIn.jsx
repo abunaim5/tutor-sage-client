@@ -9,6 +9,8 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useMutation } from "@tanstack/react-query";
 import IconBtn from "../../Components/IconBtn/IconBtn";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const LogIn = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -106,9 +108,17 @@ const LogIn = () => {
         }
     }, [from, isSuccess, navigate]);
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1500,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
+
     return (
-        <Box minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' my={{base: 10, md: 20}} px={2}>
-            <Card w={{base: 'full', md: 'lg'}} p={6} rounded='none'>
+        <Box minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' my={{ base: 10, md: 20 }} px={2}>
+            <Card w={{ base: 'full', md: 'lg' }} p={6} rounded='none' data-aos='fade-up'>
                 <Heading textAlign='center' textColor='#252525'>Sign In</Heading>
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
                     <FormControl isInvalid={errors.email}>

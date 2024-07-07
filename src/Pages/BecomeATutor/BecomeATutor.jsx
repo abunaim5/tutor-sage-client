@@ -5,6 +5,9 @@ import tutorImg from '../../assets/images/tutor.png'
 import { useMutation,  } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useUser from "../../Hooks/useUser";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const BecomeATutor = () => {
     const axiosSecure = useAxiosSecure();
@@ -32,6 +35,14 @@ const BecomeATutor = () => {
         mutate(requestData);
     };
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1500,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
+
     if (isSuccess) {
         Swal.fire({
             position: "top-end",
@@ -51,8 +62,8 @@ const BecomeATutor = () => {
             <Box className="bg-black/50" minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center'>
                 {
                     userInfo?.role === 'Teacher' ? <Box textColor='white' textAlign='center' px={2}>
-                        <Heading mb={2} fontFamily='body'>Congratulations!</Heading>
-                        <Text fontSize={{base: 'md', md: 'xl'}}>Your request to become a teacher has been approved! You can now access all teacher-related features and resources.</Text>
+                        <Heading mb={2} fontFamily='body' data-aos='fade-down'>Congratulations!</Heading>
+                        <Text fontSize={{base: 'md', md: 'xl'}} data-aos='fade-up'>Your request to become a teacher has been approved! You can now access all teacher-related features and resources.</Text>
                     </Box> : <Card w={{base: 'full', md: '4xl'}} mx='auto' px={{base: 2, md: 6}} py={6} rounded='none' bg='none' textColor='white'>
                         <Heading fontFamily='body' mb={10} textAlign='center'>Fill this form</Heading>
                         <form onSubmit={handleSubmit(onSubmit)}>

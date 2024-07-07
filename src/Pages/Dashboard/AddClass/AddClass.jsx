@@ -5,14 +5,17 @@ import { useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const AddClass = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
-    const {isSuccess, mutate} = useMutation({
-        mutationFn: async(classData) => {
+    const { isSuccess, mutate } = useMutation({
+        mutationFn: async (classData) => {
             const res = await axiosSecure.post('/classes', classData);
             return res;
         }
@@ -41,6 +44,14 @@ const AddClass = () => {
         mutate(classData);
     };
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1500,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
+
     if (isSuccess) {
         Swal.fire({
             position: "top-end",
@@ -54,10 +65,10 @@ const AddClass = () => {
 
     return (
         <Box>
-            <Card mx='auto' p={6} rounded='none'>
+            <Card mx='auto' p={6} rounded='none' data-aos='fade-up'>
                 {/* <Heading fontFamily='body' mb={10} textAlign='center'>Add Your Class</Heading> */}
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <Box display='flex' flexDir={{base: 'column', md: 'row'}} gap={6}>
+                    <Box display='flex' flexDir={{ base: 'column', md: 'row' }} gap={6}>
                         <FormControl isRequired isInvalid={errors.name}>
                             <FormLabel>Name</FormLabel>
                             <Input {...register("name", { required: 'Name is required.' })} type="text" defaultValue={user?.displayName} readOnly placeholder='Name' borderRadius='none' focusBorderColor="primary.500" autoComplete="name" />
@@ -69,7 +80,7 @@ const AddClass = () => {
                             <FormErrorMessage>{errors.email && errors.email?.message}</FormErrorMessage>
                         </FormControl>
                     </Box>
-                    <Box display='flex' flexDir={{base: 'column', md: 'row'}} gap={6} my={6}>
+                    <Box display='flex' flexDir={{ base: 'column', md: 'row' }} gap={6} my={6}>
                         <FormControl isRequired isInvalid={errors.title}>
                             <FormLabel>Title</FormLabel>
                             <Input {...register("title", { required: 'Title is required.' })} type="text" placeholder='Title' borderRadius='none' focusBorderColor="primary.500" autoComplete="name" />
@@ -81,7 +92,7 @@ const AddClass = () => {
                             <FormErrorMessage>{errors.image && errors.image?.message}</FormErrorMessage>
                         </FormControl>
                     </Box>
-                    <Box display='flex' flexDir={{base: 'column', md: 'row'}} gap={6}>
+                    <Box display='flex' flexDir={{ base: 'column', md: 'row' }} gap={6}>
                         <FormControl isRequired isInvalid={errors.price}>
                             <FormLabel>Price</FormLabel>
                             <Input {...register("price", { required: 'Price is required.' })} type="number" placeholder='Price' borderRadius='none' focusBorderColor="primary.500" autoComplete="price" />

@@ -112,7 +112,7 @@ const Dashboard = () => {
                         <Text fontWeight={600} mt={1}>Welcome!, {user?.displayName}</Text>
                     </Box>
                 </Box>
-                <Box w='100%' px={{base: 2, md: 6}} py={6} className="bg-black/5">
+                <Box w='100%' px={{base: 2, md: 6}} py={6} className="bg-black/5" minH='100vh'>
                     <Outlet />
                 </Box>
             </Box>

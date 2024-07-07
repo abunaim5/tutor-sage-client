@@ -2,12 +2,23 @@ import { Box, Button, Card, CardBody, CardFooter, Divider, Heading, Icon, Image,
 import { RiAttachmentLine } from "react-icons/ri";
 import { FaRegStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const ClassCard = ({ cls }) => {
     const { _id, title, posted_by, image_url, price, short_description, total_enrolment } = cls;
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1500,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
+
     return (
-        <Card borderRadius='none' shadow='none' >
+        <Card borderRadius='none' shadow='none' data-aos='fade-up'>
             <CardBody p={0}>
                 <Image
                     h='252px'
@@ -27,7 +38,7 @@ const ClassCard = ({ cls }) => {
                             <Text fontSize='sm' display='flex' alignItems='center' gap={2}><Icon as={RiAttachmentLine} />{total_enrolment} Enrolled</Text>
                             <Text fontSize='sm' display='flex' alignItems='center' gap={2}><Icon as={FaRegStar} />0 Ratings</Text>
                         </Box>
-                        <Text color='primary.500' fontSize={{base: 'md', md: 'xl'}}>
+                        <Text color='primary.500' fontSize={{ base: 'md', md: 'xl' }}>
                             ${price}
                         </Text>
                     </Box>

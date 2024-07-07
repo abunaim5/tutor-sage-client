@@ -46,8 +46,8 @@ const Banner = () => {
                         <Box h='100%' className="bg-black/20" textColor='white' display='flex' alignItems='center' >
                             <Box textAlign='left' w='8xl' mx='auto' px={7}>
                                 <Heading size={{ base: 'xl', lg: '3xl', xl: '4xl' }} fontFamily='body' data-aos='fade-down'>{info.heading}</Heading>
-                                <Box h={1} bg='white' w={16} my={6} data-aos='fade-left' />
-                                <Text fontSize={{ base: 'sm', md: 'lg' }} maxW='800px' data-aos='fade-down'>{info.description}</Text>
+                                <Box h={1} bg='white' w={16} my={6} data-aos='fade-right' />
+                                <Text fontSize={{ base: 'sm', md: 'lg' }} maxW='800px' data-aos='fade-up'>{info.description}</Text>
                                 <ButtonGroup mt={10} gap={{ base: 3, md: 6 }} data-aos='fade-top'>
                                     <Button variant='outline' borderRadius='none' px={{ base: 3, md: 8, lg: 10 }} py={{ base: 2, md: 6, lg: 8 }}>Read More</Button>
                                     <Button colorScheme="primary" borderRadius='none' px={{ base: 3, md: 8, lg: 10 }} py={{ base: 2, md: 6, lg: 8 }}>Apply Now</Button>
