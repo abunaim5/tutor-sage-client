@@ -50,13 +50,13 @@ const BecomeATutor = () => {
         <Box bg={`url(${tutorImg})`} bgPos='center' bgRepeat='no-repeat' bgSize='cover' bgAttachment='fixed' minH='calc(100vh - 104px)'>
             <Box className="bg-black/50" minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center'>
                 {
-                    userInfo?.role === 'Teacher' ? <Box textColor='white' textAlign='center'>
+                    userInfo?.role === 'Teacher' ? <Box textColor='white' textAlign='center' px={2}>
                         <Heading mb={2} fontFamily='body'>Congratulations!</Heading>
-                        <Text fontSize='xl'>Your request to become a teacher has been approved! You can now access all teacher-related features and resources.</Text>
-                    </Box> : <Card minW='4xl' mx='auto' p={6} rounded='none' bg='none' textColor='white'>
+                        <Text fontSize={{base: 'md', md: 'xl'}}>Your request to become a teacher has been approved! You can now access all teacher-related features and resources.</Text>
+                    </Box> : <Card w={{base: 'full', md: '4xl'}} mx='auto' px={{base: 2, md: 6}} py={6} rounded='none' bg='none' textColor='white'>
                         <Heading fontFamily='body' mb={10} textAlign='center'>Fill this form</Heading>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <Box display='flex' gap={6}>
+                            <Box display='flex' flexDir={{base: 'column', md: 'row'}} gap={6}>
                                 <FormControl isInvalid={errors.name}>
                                     <FormLabel>Name</FormLabel>
                                     <Input {...register("name", { required: 'Name is required.' })} type="text" defaultValue={userInfo?.name} placeholder='Name' borderRadius='none' focusBorderColor="primary.500" autoComplete="name" />
@@ -68,7 +68,7 @@ const BecomeATutor = () => {
                                     <FormErrorMessage>{errors.email && errors.email?.message}</FormErrorMessage>
                                 </FormControl>
                             </Box>
-                            <Box display='flex' gap={6} my={6}>
+                            <Box display='flex' flexDir={{base: 'column', md: 'row'}} gap={6} my={6}>
                                 <FormControl isInvalid={errors.photo}>
                                     <FormLabel>Your Photo</FormLabel>
                                     <Input {...register("photo", { required: 'Photo is required.' })} type="text" defaultValue={userInfo?.photo} placeholder='https://' borderRadius='none' focusBorderColor="primary.500" autoComplete="photo" />
@@ -80,7 +80,7 @@ const BecomeATutor = () => {
                                     <FormErrorMessage>{errors.title && errors.title?.message}</FormErrorMessage>
                                 </FormControl>
                             </Box>
-                            <Box display='flex' gap={6}>
+                            <Box display='flex' flexDir={{base: 'column', md: 'row'}} gap={6}>
                                 <FormControl isInvalid={errors.experience}>
                                     <FormLabel>Experience</FormLabel>
                                     <Select {...register("experience", { required: 'Experience is required.' })} placeholder='Select experience' borderRadius='none' focusBorderColor="primary.500" autoComplete="experience" sx={{ '> option': { color: 'black' } }}>

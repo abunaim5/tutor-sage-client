@@ -107,8 +107,8 @@ const LogIn = () => {
     }, [from, isSuccess, navigate]);
 
     return (
-        <Box minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' >
-            <Card minW='lg' p={6} rounded='none'>
+        <Box minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' my={{base: 10, md: 20}} px={2}>
+            <Card w={{base: 'full', md: 'lg'}} p={6} rounded='none'>
                 <Heading textAlign='center' textColor='#252525'>Sign In</Heading>
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
                     <FormControl isInvalid={errors.email}>
@@ -130,7 +130,7 @@ const LogIn = () => {
                 </form>
                 <Box mt={6}>
                     <Text textAlign='center'>Login with social accounts</Text>
-                    <ButtonGroup justifyContent='center' w='100%' mt={3}>
+                    <ButtonGroup justifyContent='center' w='full' mt={3}>
                         {
                             loginButtons.map((button, idx) => <IconBtn key={idx} button={button} />)
                         }

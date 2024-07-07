@@ -10,7 +10,7 @@ const AllClasses = () => {
     }
 
     return (
-        <Box maxW='8xl' mx='auto' my={20} px={7}>
+        <Box maxW='8xl' mx='auto' my={{base: 10, md: 20}} px={{base: 2, md: 7}}>
             <Box gap={6} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {
                     classes.map(cls => <ClassCard key={cls._id} cls={cls} />)

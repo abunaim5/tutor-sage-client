@@ -34,7 +34,8 @@ const AddClass = () => {
             short_description: data.shortDes,
             long_description: data.longDes,
             total_enrolment: 0,
-            status: 'Pending'
+            status: 'Pending',
+            photo: user.photoURL
         }
 
         mutate(classData);

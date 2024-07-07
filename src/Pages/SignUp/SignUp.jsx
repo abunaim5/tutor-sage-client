@@ -112,8 +112,8 @@ const SignUp = () => {
     ];
 
     return (
-        <Box minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' >
-            <Card minW='lg' p={6} rounded='none'>
+        <Box minH='calc(100vh - 104px)' display='flex' justifyContent='center' alignItems='center' my={{base: 10, md: 20}} px={2}>
+            <Card w={{base: 'full', md: 'lg'}} p={6} rounded='none'>
                 <Heading textAlign='center' textColor='#252525'>Sign Up</Heading>
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
                     <FormControl isInvalid={errors.name}>
