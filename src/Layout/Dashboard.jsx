@@ -100,19 +100,19 @@ const Dashboard = () => {
                     </Box>
                 </Box>
             </Show>
-            <Box display='flex' flexDir='column' gap={6} className="w-full lg:w-[75%]">
-                <Box p={6} display='flex' alignItems='center' gap={6}>
+            <Box display='flex' flexDir='column' className="w-full lg:w-[75%]">
+                <Box px={{base: 2, md: 6}} py={6} display='flex' alignItems='center' gap={6}>
                     <Show below="md">
-                        <Button colorScheme='primary' ref={btnRef} onClick={onOpen} borderRadius='none' p={7}>
+                        <Button colorScheme='primary' ref={btnRef} onClick={onOpen} borderRadius='none' size='lg'>
                             <HamburgerIcon fontSize='2xl' />
                         </Button>
                     </Show>
                     <Box>
-                        <Heading fontFamily='body' fontSize='3xl' fontWeight={600}>Dashboard</Heading>
+                        <Heading fontFamily='body' size='lg' fontWeight={600}>Dashboard</Heading>
                         <Text fontWeight={600} mt={1}>Welcome!, {user?.displayName}</Text>
                     </Box>
                 </Box>
-                <Box w='100%' p={6} className="bg-black/5">
+                <Box w='100%' px={{base: 2, md: 6}} py={6} className="bg-black/5">
                     <Outlet />
                 </Box>
             </Box>

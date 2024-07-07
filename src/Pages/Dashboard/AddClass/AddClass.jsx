@@ -57,7 +57,7 @@ const AddClass = () => {
             <Card mx='auto' p={6} rounded='none'>
                 {/* <Heading fontFamily='body' mb={10} textAlign='center'>Add Your Class</Heading> */}
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <Box display='flex' gap={6}>
+                    <Box display='flex' flexDir={{base: 'column', md: 'row'}} gap={6}>
                         <FormControl isRequired isInvalid={errors.name}>
                             <FormLabel>Name</FormLabel>
                             <Input {...register("name", { required: 'Name is required.' })} type="text" defaultValue={user?.displayName} readOnly placeholder='Name' borderRadius='none' focusBorderColor="primary.500" autoComplete="name" />
@@ -69,7 +69,7 @@ const AddClass = () => {
                             <FormErrorMessage>{errors.email && errors.email?.message}</FormErrorMessage>
                         </FormControl>
                     </Box>
-                    <Box display='flex' gap={6} my={6}>
+                    <Box display='flex' flexDir={{base: 'column', md: 'row'}} gap={6} my={6}>
                         <FormControl isRequired isInvalid={errors.title}>
                             <FormLabel>Title</FormLabel>
                             <Input {...register("title", { required: 'Title is required.' })} type="text" placeholder='Title' borderRadius='none' focusBorderColor="primary.500" autoComplete="name" />
@@ -81,7 +81,7 @@ const AddClass = () => {
                             <FormErrorMessage>{errors.image && errors.image?.message}</FormErrorMessage>
                         </FormControl>
                     </Box>
-                    <Box display='flex' gap={6}>
+                    <Box display='flex' flexDir={{base: 'column', md: 'row'}} gap={6}>
                         <FormControl isRequired isInvalid={errors.price}>
                             <FormLabel>Price</FormLabel>
                             <Input {...register("price", { required: 'Price is required.' })} type="number" placeholder='Price' borderRadius='none' focusBorderColor="primary.500" autoComplete="price" />

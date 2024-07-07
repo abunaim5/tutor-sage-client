@@ -18,13 +18,13 @@ const MyClassCard = ({ cls, user, handleDeleteClass }) => {
                             <Text>{email}</Text>
                         </Box>
                     </Flex>
-                    <Text textColor='primary.500' fontSize='2xl'>${price}</Text>
+                    <Text textColor='primary.500' fontSize={{base: 'lg', md: 'xl'}}>${price}</Text>
                 </Flex>
             </CardHeader>
             <CardBody>
                 <Text mb={4} fontWeight={600}>Class Status: {status}</Text>
                 <Text fontWeight={600} mb={2}>{short_description}</Text>
-                <Text>{long_description}</Text>
+                <Text fontSize={{base: 'sm', md: 'md'}}>{long_description}</Text>
             </CardBody>
             <Image
                 objectFit='cover'
@@ -37,9 +37,10 @@ const MyClassCard = ({ cls, user, handleDeleteClass }) => {
                 flexWrap='wrap'
                 sx={{
                     '& > button': {
-                        minW: '136px',
+                        w: 'full',
                     },
                 }}
+                gap={2}
             >
                 <Button as={Link} to={`/dashboard/my-class/${_id}`} flex='1' variant='ghost' leftIcon={<TbListDetails />} isDisabled={status !== 'Accepted' && true}>
                     Details

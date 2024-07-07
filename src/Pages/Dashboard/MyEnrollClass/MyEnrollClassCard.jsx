@@ -20,7 +20,7 @@ const MyEnrollClassCard = ({ enrollClass }) => {
 
             <Stack>
                 <CardBody>
-                    <Heading size='md' fontFamily='body'>{title}</Heading>
+                    <Heading size={{base: 'sm', md: 'md'}} fontFamily='body'>{title}</Heading>
                     <Text fontWeight={500} py='2'>{posted_by}</Text>
                     <Text fontWeight={500}>{email}</Text>
                     

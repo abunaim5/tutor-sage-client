@@ -54,7 +54,7 @@ const MyClassDetails = () => {
 
     return (
         <Box my={10}>
-            <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(400px, 1fr))'>
+            <SimpleGrid spacing={4} templateColumns={{base: 'repeat(auto-fill, minmax(200px, 1fr))', md: 'repeat(auto-fill, minmax(400px, 1fr))'}}>
                 <Card align='center' borderRadius='none' bg='primary.50'>
                     <CardHeader>
                         <Heading textAlign='center' fontFamily='body' size='md'>Total Enrolment</Heading>

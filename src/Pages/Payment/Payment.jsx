@@ -1,10 +1,11 @@
-import { Box, Card, Heading, Text } from "@chakra-ui/react";
+import { Box, Card, Text } from "@chakra-ui/react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import SectionHeadDes from "../../Components/SectionHeadDes/SectionHeadDes";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
 
@@ -25,9 +26,11 @@ const Payment = () => {
     }
 
     return (
-        <Box maxW='8xl' mx='auto' my={20} px={7}>
-            <Heading fontFamily='body'>Payment</Heading>
-            <Box h={1} bg='primary.500' w={14} mt={6} mb={16} />
+        <Box maxW='8xl' mx='auto' my={{base: 10, md: 20}} px={{base: 2, md: 7}}>
+            <SectionHeadDes
+                heading='Payment'
+                description=''
+            />
             <Card p={10}>
                 <Text textAlign='center' fontSize='2xl' fontWeight={600} mb={10}>Total: ${cls.price}</Text>
                 <Elements stripe={stripePromise}>

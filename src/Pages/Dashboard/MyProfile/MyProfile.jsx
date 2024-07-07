@@ -3,7 +3,6 @@ import useUser from "../../../Hooks/useUser";
 
 const MyProfile = () => {
     const [userInfo, isUserLoading] = useUser();
-    console.log(userInfo)
 
     if (isUserLoading) {
         return;

@@ -8,9 +8,9 @@ const ProfileCard = ({ userInfo }) => {
         <Box>
             <Heading mb={6} fontSize='2xl' fontFamily='body'>My Profile</Heading>
             <Card>
-                <CardBody display='flex' justifyContent='space-between'>
-                    <Box display='flex' alignItems='center' gap={6}>
-                        <Avatar size='xl' name={name} src={photo} />
+                <CardBody display='flex' flexDir={{base: 'column', md: 'row'}} gap={{base: 6, md: 0}} justifyContent='space-between'>
+                    <Box display='flex' flexDir={{base: 'column', md: 'row'}} alignItems={{base: 'flex-start', md: 'center'}} gap={6}>
+                        <Avatar size={{base: 'lg', md: 'xl'}} name={name} src={photo} />
                         <Box>
                             <Heading fontSize='2xl' fontFamily='body'>{name}</Heading>
                             <Text my={1} fontWeight={600} textColor='gray'>{role}</Text>
@@ -21,7 +21,7 @@ const ProfileCard = ({ userInfo }) => {
                 </CardBody>
             </Card>
             <Card mt={6}>
-                <CardBody display='flex' justifyContent='space-between'>
+                <CardBody display='flex' flexDir={{base: 'column', md: 'row'}} gap={{base: 6, md: 0}} justifyContent='space-between'>
                     <Box textColor='gray'>
                         <Heading fontSize='2xl' fontFamily='body' textColor='black'>Personal information</Heading>
                         <Text mt={7} fontWeight={600}>Email: {email}</Text>
@@ -32,7 +32,7 @@ const ProfileCard = ({ userInfo }) => {
                 </CardBody>
             </Card>
             <Card mt={6}>
-                <CardBody display='flex' justifyContent='space-between'>
+                <CardBody display='flex' flexDir={{base: 'column', md: 'row'}} gap={{base: 6, md: 0}} justifyContent='space-between'>
                     <Box textColor='gray'>
                         <Heading fontSize='2xl' fontFamily='body' textColor='black'>Address</Heading>
                         <Text mt={7} fontWeight={600}>Country: United States of America</Text>

@@ -29,7 +29,7 @@ const bannerInfo = [
 const Banner = () => {
     return (
         <Box>
-            <Carousel showThumbs={false} interval={4000} transitionTime={2000} infiniteLoop={true}>
+            <Carousel showThumbs={false} interval={4000} transitionTime={2000} infiniteLoop={true} emulateTouch={true} swipeScrollTolerance={30} swipeable={false} autoPlay>
                 {
                     bannerInfo.map((info, idx) => <Box key={idx} bgImg={`url(${info.image})`} h='calc(100vh - 104px)' bgPos={info.bgPos} bgAttachment='fixed' bgSize='cover' bgRepeat='no-repeat' >
                         <Box h='100%' className="bg-black/20" textColor='white' display='flex' alignItems='center' >
