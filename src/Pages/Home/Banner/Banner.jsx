@@ -29,17 +29,17 @@ const bannerInfo = [
 const Banner = () => {
     return (
         <Box>
-            <Carousel showThumbs={false} interval={4000} transitionTime={2000} infiniteLoop={true} autoPlay>
+            <Carousel showThumbs={false} interval={4000} transitionTime={2000} infiniteLoop={true}>
                 {
-                    bannerInfo.map((info, idx) => <Box key={idx} bgImg={`url(${info.image})`} h='calc(100vh - 104px)' bgPos={info.bgPos} bgAttachment='fixed' bgSize='cover' bgRepeat='no-repeat'>
+                    bannerInfo.map((info, idx) => <Box key={idx} bgImg={`url(${info.image})`} h='calc(100vh - 104px)' bgPos={info.bgPos} bgAttachment='fixed' bgSize='cover' bgRepeat='no-repeat' >
                         <Box h='100%' className="bg-black/20" textColor='white' display='flex' alignItems='center' >
-                            <Box textAlign='left' w='8xl' mx='auto' px={2}>
-                                <Heading size='4xl' fontFamily='body'>{info.heading}</Heading>
+                            <Box textAlign='left' w='8xl' mx='auto' px={7}>
+                                <Heading size={{base: 'xl', lg: '3xl', xl: '4xl'}} fontFamily='body'>{info.heading}</Heading>
                                 <Box h={1} bg='white' w={16} my={6} />
-                                <Text fontSize='lg'>{info.description}</Text>
-                                <ButtonGroup mt={10} gap={6}>
-                                    <Button variant='outline' borderRadius='none' px={10} py={8}>Read More</Button>
-                                    <Button colorScheme="primary" borderRadius='none' px={10} py={8}>Apply Now</Button>
+                                <Text fontSize={{base: 'sm', md: 'lg'}} maxW='800px'>{info.description}</Text>
+                                <ButtonGroup mt={10} gap={{base: 3, md: 6}}>
+                                    <Button variant='outline' borderRadius='none' px={{base: 3, md: 8, lg: 10}} py={{base: 2, md: 6, lg: 8}}>Read More</Button>
+                                    <Button colorScheme="primary" borderRadius='none' px={{base: 3, md: 8, lg: 10}} py={{base: 2, md: 6, lg: 8}}>Apply Now</Button>
                                 </ButtonGroup>
                             </Box>
                         </Box>

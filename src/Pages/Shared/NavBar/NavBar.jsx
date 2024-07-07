@@ -24,12 +24,13 @@ const NavBar = () => {
     }
 
     return (
-        <Box p={7} w='full'>
-            <Flex maxW='8xl' mx='auto' alignItems='center' gap='2'>
-                <Box display='flex' alignItems='center' gap={4}>
+        <Box px={{base: 2, md: 7}} py={7} w='full'>
+            <Flex maxW='8xl' mx='auto' alignItems='center' gap={{base: 1, md: 2}}>
+                <Box display='flex' alignItems='center' gap={{base: 2, md: 4}}>
                     <Show below="md">
                         <Menu>
                             <MenuButton
+                                size={{base: 'sm', md: 'md'}}
                                 borderRadius='none'
                                 as={IconButton}
                                 aria-label='Options'
@@ -55,7 +56,7 @@ const NavBar = () => {
                             </MenuList>
                         </Menu>
                     </Show>
-                    <Heading size='lg' as={Link} to='/' textColor='#252525' fontFamily='logo.croissant' >TutorSa<span className="text-[#FF1949]">g</span>e</Heading>
+                    <Heading size={{base: 'sm', md: 'lg'}} as={Link} to='/' textColor='#252525' fontFamily='logo.croissant' >TutorSa<span className="text-[#FF1949]">g</span>e</Heading>
                 </Box>
                 <Spacer />
                 <Show above="lg">
@@ -101,9 +102,9 @@ const NavBar = () => {
                                     </MenuGroup>
                                 </MenuList>
                             </Menu>
-                        </Box> : <ButtonGroup gap='2'>
-                            <Button as={Link} to='/login' colorScheme='primary' variant='outline' borderRadius='none'>Log In</Button>
-                            <Button as={Link} to='/register' colorScheme='primary' borderRadius='none'>Sign Up</Button>
+                        </Box> : <ButtonGroup gap={{base: 1, md: 2}}>
+                            <Button as={Link} to='/login' colorScheme='primary' variant='outline' borderRadius='none' size={{base: 'sm', md: 'md'}}>Log In</Button>
+                            <Button as={Link} to='/register' colorScheme='primary' borderRadius='none' size={{base: 'sm', md: 'md'}}>Sign Up</Button>
                         </ButtonGroup>
                     }
                 </Box>

@@ -58,7 +58,7 @@ const Footer = () => {
             <Box textColor='white' bg='#1D1D1D' py={10}>
                 <Box maxW='8xl' mx='auto' px={7} className="flex justify-between flex-col-reverse md:flex-row gap-4">
                     <Text>&copy; {currentYear} TutorSage. All Rights Reserved.</Text>
-                    <Box textColor='lightgrey' className="flex gap-4">
+                    <Box textColor='lightgrey' display='flex' gap={4} flexDir={{base: 'column', md: 'row'}}>
                         <Text>Call: (123) 456-7890</Text>
                         <Text>Follow Us
                             <Link><Icon ml={2} as={FaLinkedinIn} /></Link>
