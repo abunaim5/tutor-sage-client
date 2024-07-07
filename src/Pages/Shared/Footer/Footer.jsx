@@ -9,7 +9,7 @@ const Footer = () => {
 
     return (
         <Box bg='#252525'>
-            <Box maxW='8xl' mx='auto' textColor='white' py={20} px={7} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Box maxW='8xl' mx='auto' textColor='white' py={20} px={{base: 2, md: 7}} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <Box>
                     <Box>
                         <Heading size='lg' as={Link} to='/' fontFamily='logo.croissant' >TutorSa<span className="text-[#FF1949]">g</span>e</Heading>
@@ -56,7 +56,7 @@ const Footer = () => {
                 </Box>
             </Box>
             <Box textColor='white' bg='#1D1D1D' py={10}>
-                <Box maxW='8xl' mx='auto' px={7} className="flex justify-between flex-col-reverse md:flex-row gap-4">
+                <Box maxW='8xl' mx='auto' px={{base: 2, md: 7}} className="flex justify-between flex-col-reverse md:flex-row gap-4">
                     <Text>&copy; {currentYear} TutorSage. All Rights Reserved.</Text>
                     <Box textColor='lightgrey' display='flex' gap={4} flexDir={{base: 'column', md: 'row'}}>
                         <Text>Call: (123) 456-7890</Text>

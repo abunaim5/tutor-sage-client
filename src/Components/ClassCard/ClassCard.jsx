@@ -27,7 +27,7 @@ const ClassCard = ({ cls }) => {
                             <Text fontSize='sm' display='flex' alignItems='center' gap={2}><Icon as={RiAttachmentLine} />{total_enrolment} Enrolled</Text>
                             <Text fontSize='sm' display='flex' alignItems='center' gap={2}><Icon as={FaRegStar} />0 Ratings</Text>
                         </Box>
-                        <Text color='primary.500' fontSize='xl'>
+                        <Text color='primary.500' fontSize={{base: 'md', md: 'xl'}}>
                             ${price}
                         </Text>
                     </Box>

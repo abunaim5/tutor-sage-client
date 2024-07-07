@@ -1,7 +1,8 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import ProfessionalsCard from "./ProfessionalsCard";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import SectionHeadDes from "../../../Components/SectionHeadDes/SectionHeadDes";
 
 const MeetProfessionals = () => {
     const axiosPublic = useAxiosPublic();
@@ -19,10 +20,11 @@ const MeetProfessionals = () => {
     }
 
     return (
-        <Box maxW='8xl' mx='auto' my={20} px={7}>
-            <Heading fontFamily='body'>Meet Professionals</Heading>
-            <Box h={1} bg='primary.500' w={14} mt={6} mb={4} />
-            <Text mb={16} maxW='4xl'>Connect with industry experts and seasoned educators who bring real-world experience to our platform. Our Meet Professionals section introduces you to the talented instructors behind our courses.</Text>
+        <Box maxW='8xl' mx='auto' my={20} px={{base: 2, md: 7}}>
+            <SectionHeadDes
+                heading='Meet Professionals'
+                description='Connect with industry experts and seasoned educators who bring real-world experience to our platform. Our Meet Professionals section introduces you to the talented instructors behind our courses.'
+            />
             <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
                     professionals.map(professional => <ProfessionalsCard key={professional._id} professional={professional} />)

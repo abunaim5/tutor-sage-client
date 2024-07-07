@@ -14,10 +14,10 @@ const FAQuestion = () => {
         <Box bg={`url(${FAQ})`} bgAttachment='fixed' bgPos='center'>
             <Box maxW='8xl' mx='auto' py={32} className="grid grid-cols-1 lg:grid-cols-2 lg:px-10">
                 <Box bg='primary.500' p={12} textColor='white' textAlign='center'>
-                    <Heading fontFamily='body'>Frequently Asked Questions (FAQ)</Heading>
-                    <Icon as={FaQuestion} fontSize='8xl' mt={16} />
+                    <Heading fontFamily='body' size={{base: 'lg', md: 'xl'}}>Frequently Asked Questions (FAQ)</Heading>
+                    <Icon as={FaQuestion} fontSize={{base: '5xl', md: '8xl'}} mt={16} />
                 </Box>
-                <Box bg='white' p={12}>
+                <Box bg='white' px={{base: 6, md: 12}} py={12}>
                     <Accordion allowToggle>
                         <AccordionItem>
                             <h2>

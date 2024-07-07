@@ -26,7 +26,7 @@ const PopularClasses = () => {
   }
 
   return (
-    <Box maxW='8xl' mx='auto' my={20} px={7}>
+    <Box maxW='8xl' mx='auto' my={20} px={{base: 2, md: 7}}>
       <SectionHeadDes
         heading='Popular Classes'
         description='Explore our most popular classes, curated to provide exceptional learning experiences. These courses have been highly rated by students for their engaging content and expert instruction.'
