@@ -9,9 +9,20 @@ import ClassCard from "../../../Components/ClassCard/ClassCard";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import SectionHeadDes from "../../../Components/SectionHeadDes/SectionHeadDes";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const PopularClasses = () => {
   const axiosPublic = useAxiosPublic();
+
+  useEffect(() => {
+    AOS.init({
+        duration: 2000,
+        delay: 200,
+    });
+    AOS.refresh();
+}, []);
 
   const { isLoading, data: classes = [] } = useQuery({
     queryKey: ['popular-classes'],
@@ -60,7 +71,7 @@ const PopularClasses = () => {
       >
         {
           classes.map(cls => <SwiperSlide key={cls._id}>
-            <Box my={5}>
+            <Box my={5} data-aos='fade-up'>
               <ClassCard cls={cls} />
             </Box>
           </SwiperSlide>)

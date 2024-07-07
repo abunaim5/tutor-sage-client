@@ -3,13 +3,24 @@ import { Box, Button, Heading, Input, InputGroup, InputRightAddon, Text } from "
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1500,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
+
     return (
         <Box bg='#252525'>
-            <Box maxW='8xl' mx='auto' textColor='white' py={20} px={{base: 2, md: 7}} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Box maxW='8xl' mx='auto' textColor='white' py={20} px={{base: 2, md: 7}} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-aos='fade-up'>
                 <Box>
                     <Box>
                         <Heading size='lg' as={Link} to='/' fontFamily='logo.croissant' >TutorSa<span className="text-[#FF1949]">g</span>e</Heading>

@@ -1,8 +1,20 @@
 import { Card, CardBody, CardFooter, Heading, IconButton, Image, Stack, Text } from "@chakra-ui/react";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const ProfessionalsCard = ({professional}) => {
-    const {name, photo, role} = professional
+    const {name, photo, role} = professional;
+
+    useEffect(() => {
+        AOS.init({
+            duration: 2000,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
+
 
     return (
         <Card
@@ -10,6 +22,7 @@ const ProfessionalsCard = ({professional}) => {
             direction={{ base: 'column', sm: 'row' }}
             overflow='hidden'
             variant='outline'
+            data-aos='fade-up'
         >
             <Image
                 objectFit='cover'

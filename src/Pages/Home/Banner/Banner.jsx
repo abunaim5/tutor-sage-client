@@ -4,6 +4,9 @@ import banner1 from '../../../assets/images/banner1.png'
 import banner2 from '../../../assets/images/banner2.png'
 import banner3 from '../../../assets/images/banner3.png'
 import { Box, Button, ButtonGroup, Heading, Text } from "@chakra-ui/react";
+import { useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const bannerInfo = [
     {
@@ -27,19 +30,27 @@ const bannerInfo = [
 ];
 
 const Banner = () => {
+    useEffect(() => {
+        AOS.init({
+            duration: 5000,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
+
     return (
         <Box>
-            <Carousel showThumbs={false} interval={4000} transitionTime={2000} infiniteLoop={true} emulateTouch={true} swipeScrollTolerance={30} swipeable={false} autoPlay>
+            <Carousel showThumbs={false} interval={3000} transitionTime={2000} infiniteLoop={true} emulateTouch={true} swipeScrollTolerance={30} swipeable={false} autoPlay>
                 {
                     bannerInfo.map((info, idx) => <Box key={idx} bgImg={`url(${info.image})`} h='calc(100vh - 104px)' bgPos={info.bgPos} bgAttachment='fixed' bgSize='cover' bgRepeat='no-repeat' >
                         <Box h='100%' className="bg-black/20" textColor='white' display='flex' alignItems='center' >
                             <Box textAlign='left' w='8xl' mx='auto' px={7}>
-                                <Heading size={{base: 'xl', lg: '3xl', xl: '4xl'}} fontFamily='body'>{info.heading}</Heading>
-                                <Box h={1} bg='white' w={16} my={6} />
-                                <Text fontSize={{base: 'sm', md: 'lg'}} maxW='800px'>{info.description}</Text>
-                                <ButtonGroup mt={10} gap={{base: 3, md: 6}}>
-                                    <Button variant='outline' borderRadius='none' px={{base: 3, md: 8, lg: 10}} py={{base: 2, md: 6, lg: 8}}>Read More</Button>
-                                    <Button colorScheme="primary" borderRadius='none' px={{base: 3, md: 8, lg: 10}} py={{base: 2, md: 6, lg: 8}}>Apply Now</Button>
+                                <Heading size={{ base: 'xl', lg: '3xl', xl: '4xl' }} fontFamily='body' data-aos='fade-down'>{info.heading}</Heading>
+                                <Box h={1} bg='white' w={16} my={6} data-aos='fade-left' />
+                                <Text fontSize={{ base: 'sm', md: 'lg' }} maxW='800px' data-aos='fade-down'>{info.description}</Text>
+                                <ButtonGroup mt={10} gap={{ base: 3, md: 6 }} data-aos='fade-top'>
+                                    <Button variant='outline' borderRadius='none' px={{ base: 3, md: 8, lg: 10 }} py={{ base: 2, md: 6, lg: 8 }}>Read More</Button>
+                                    <Button colorScheme="primary" borderRadius='none' px={{ base: 3, md: 8, lg: 10 }} py={{ base: 2, md: 6, lg: 8 }}>Apply Now</Button>
                                 </ButtonGroup>
                             </Box>
                         </Box>

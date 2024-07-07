@@ -8,16 +8,29 @@ import {
     AccordionIcon,
 } from '@chakra-ui/react'
 import { FaQuestion } from "react-icons/fa";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const FAQuestion = () => {
+
+    useEffect(() => {
+        AOS.init({
+            duration: 1500,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
+
+
     return (
         <Box bg={`url(${FAQ})`} bgAttachment='fixed' bgPos='center'>
-            <Box maxW='8xl' mx='auto' py={32} className="grid grid-cols-1 lg:grid-cols-2 lg:px-10">
+            <Box maxW='8xl' mx='auto' py={32} className="grid grid-cols-1 lg:grid-cols-2 lg:px-10" data-aos="zoom-in">
                 <Box bg='primary.500' p={12} textColor='white' textAlign='center'>
-                    <Heading fontFamily='body' size={{base: 'lg', md: 'xl'}}>Frequently Asked Questions (FAQ)</Heading>
-                    <Icon as={FaQuestion} fontSize={{base: '5xl', md: '8xl'}} mt={16} />
+                    <Heading fontFamily='body' size={{ base: 'lg', md: 'xl' }}>Frequently Asked Questions (FAQ)</Heading>
+                    <Icon as={FaQuestion} fontSize={{ base: '5xl', md: '8xl' }} mt={16} />
                 </Box>
-                <Box bg='white' px={{base: 6, md: 12}} py={12}>
+                <Box bg='white' px={{ base: 6, md: 12 }} py={12}>
                     <Accordion allowToggle>
                         <AccordionItem>
                             <h2>

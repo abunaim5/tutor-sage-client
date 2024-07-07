@@ -5,6 +5,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay} from 'swiper/modules';
 import { Rating } from "react-simple-star-rating";
 import SectionHeadDes from "../../../Components/SectionHeadDes/SectionHeadDes";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const Feedbacks = () => {
     const axiosPublic = useAxiosPublic();
@@ -16,6 +19,14 @@ const Feedbacks = () => {
             return res.data;
         }
     });
+
+    useEffect(() => {
+        AOS.init({
+            duration: 2000,
+            delay: 200,
+        });
+        AOS.refresh();
+    }, []);
 
     if (isLoading) {
         return;
@@ -42,7 +53,7 @@ const Feedbacks = () => {
             >
                 {
                     feedbacks.map(feedback => <SwiperSlide key={feedback._id}>
-                        <Box w='100%' my={5}>
+                        <Box w='100%' my={5} data-aos='fade-up'>
                             <Avatar size='xl' name={feedback.user_name} src={feedback.user_photo} />
                             <Text fontWeight={600} fontSize={{base: '2xl', md: '3xl'}} my={2}>{feedback.user_name}</Text>
                             <Text fontWeight={600} fontSize={{base: 'md', md: 'xl'}}>{feedback.title}</Text>
